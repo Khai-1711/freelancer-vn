@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://www.freelancer.com/api/projects/0.1/projects/?limit=3&job_details=true",
+    "error": "HTTP Error 400: Bad Request"
+  },
+  {
+    "url": "https://www.freelancer.com/api/categories/0.1/categories?limit=5",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://www.freelancer.com/api/skills/0.1/skills?limit=5",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://www.freelancer.com/api/languages/0.1/languages?limit=5",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://www.freelancer.com/api/seo/0.1/footer-links",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://www.freelancer.com/api/timezones/0.1/timezones?limit=3",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

@@ -1,0 +1,11 @@
+﻿abtest/0.1/enrollments/
+users/0.1/app_installs/
+users/0.1/app_installs/${r.deviceId}/
+users/0.1/self
+users/0.1/self/enterprise_metadata_fields
+users/0.1/tokens
+users/0.1/users
+users/0.1/users/apple
+users/0.1/users/check
+users/0.1/users/facebook
+users/0.1/users/google

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f8f9fa;
+  color: #151d2a;
+}
+
+.card-transition {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}

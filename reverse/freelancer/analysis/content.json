@@ -1,0 +1,1553 @@
+{
+  "headings": [
+    {
+      "level": 1,
+      "text": "Thuê các freelancer giỏi nhất cho mọi công việc trực tuyến."
+    },
+    {
+      "level": 2,
+      "text": "Biến điều đó thành hiện thực với Freelancer"
+    },
+    {
+      "level": 3,
+      "text": "Nhân tài giỏi nhất"
+    },
+    {
+      "level": 3,
+      "text": "Chào giá nhanh"
+    },
+    {
+      "level": 3,
+      "text": "Công việc chất lượng"
+    },
+    {
+      "level": 3,
+      "text": "Luôn kiểm soát"
+    },
+    {
+      "level": 2,
+      "text": "Khai thác mạng lưới nhân tài toàn cầu"
+    },
+    {
+      "level": 3,
+      "text": "Đăng công việc của bạn"
+    },
+    {
+      "level": 3,
+      "text": "Chọn freelancer"
+    },
+    {
+      "level": 3,
+      "text": "Thanh toán an toàn"
+    },
+    {
+      "level": 3,
+      "text": "Chúng tôi ở đây để hỗ trợ"
+    },
+    {
+      "level": 2,
+      "text": "Hoàn thành công việc thuộc hơn 4000 danh mục khác nhau"
+    },
+    {
+      "level": 3,
+      "text": "Gia tăng lợi thế cạnh tranh cho tổ chức của bạn"
+    }
+  ],
+  "buttons": [
+    "Thuê freelancer",
+    "Theo kỹ năng Bạn tìm một freelancer với kỹ năng cụ thể? Bắt đầu ở đây.",
+    "Theo vị trí Tìm kiếm freelancer dựa trên vị trí và múi giờ của họ.",
+    "Xem thêm",
+    "Tìm hiểu thêm",
+    "Tìm hiểu thêm",
+    "Tìm hiểu thêm",
+    "Tìm hiểu thêm",
+    "Tìm việc",
+    "Theo kỹ năng Tìm việc làm yêu cầu một kỹ năng cụ thể.",
+    "Theo ngôn ngữ Tìm việc ở ngôn ngữ của bạn,",
+    "Xem thêm",
+    "Giải pháp",
+    "Tìm hiểu thêm",
+    "Tìm hiểu thêm",
+    "VI",
+    "Trợ năng"
+  ],
+  "links": [
+    {
+      "href": "/",
+      "text": ""
+    },
+    {
+      "href": "/hire",
+      "text": "Theo lĩnh vực Tìm kiếm freelancer phù hợp theo phân loại dự án cụ thể."
+    },
+    {
+      "href": "/hire/graphic-design",
+      "text": "Chuyên viên thiết kế đồ họa"
+    },
+    {
+      "href": "/hire/website-design",
+      "text": "Chuyên viên thiết kế website"
+    },
+    {
+      "href": "/hire/mobile-development",
+      "text": "Lập trình viên ứng dụng di động"
+    },
+    {
+      "href": "/hire/software-development",
+      "text": "Lập trình viên phần mềm"
+    },
+    {
+      "href": "/hire/3d-design",
+      "text": "Họa sĩ 3D"
+    },
+    {
+      "href": "/hire/illustration",
+      "text": "Minh họa"
+    },
+    {
+      "href": "/hire/web-development",
+      "text": "Lập trình viên web"
+    },
+    {
+      "href": "/hire/writing",
+      "text": "Chuyên viên viết bài"
+    },
+    {
+      "href": "/hire/internet-marketing",
+      "text": "Chuyên viên tiếp thị"
+    },
+    {
+      "href": "/hire/seo",
+      "text": "Chuyên viên SEO"
+    },
+    {
+      "href": "/hire/data-entry",
+      "text": "Trợ lý nhập liệu"
+    },
+    {
+      "href": "/hire/virtual-assistant",
+      "text": "Trợ lý ảo"
+    },
+    {
+      "href": "/hire/translation",
+      "text": "Biên dịch viên"
+    },
+    {
+      "href": "/hire/finance",
+      "text": "Chuyên gia tài chính"
+    },
+    {
+      "href": "/hire/manufacturing",
+      "text": "Chuyên viên sản xuất"
+    },
+    {
+      "href": "/hire/logistics-shipping",
+      "text": "Chuyên gia logistics"
+    },
+    {
+      "href": "/hire/fashion-design",
+      "text": "Nhà thiết kế thời trang"
+    },
+    {
+      "href": "/hire/graphic-design",
+      "text": "Nhà thiết kế đồ họa"
+    },
+    {
+      "href": "/hire/logo-design",
+      "text": "Nhà thiết kế logo"
+    },
+    {
+      "href": "/hire/3d-design",
+      "text": "Nhà thiết kế đồ họa 3D"
+    },
+    {
+      "href": "/hire/website-design",
+      "text": "Nhà thiết kế web"
+    },
+    {
+      "href": "/hire/web-development",
+      "text": "Lập trình viên web"
+    },
+    {
+      "href": "/hire/mobile-development",
+      "text": "Lập trình viên ứng dụng di động"
+    },
+    {
+      "href": "/hire/writing",
+      "text": "Chuyên viên viết bài"
+    },
+    {
+      "href": "/hire/internet-marketing",
+      "text": "Chuyên viên tiếp thị Internet"
+    },
+    {
+      "href": "/hire/seo",
+      "text": "Chuyên gia SEO"
+    },
+    {
+      "href": "/hire/data-entry",
+      "text": "Cộng tác viên nhập liệu"
+    },
+    {
+      "href": "/hire/virtual-assistant",
+      "text": "Trợ lý ảo"
+    },
+    {
+      "href": "/hire/software-development",
+      "text": "Nhà phát triển phần mềm"
+    },
+    {
+      "href": "/hire/translation",
+      "text": "Biên dịch viên"
+    },
+    {
+      "href": "/hire/finance",
+      "text": "Chuyên gia tài chính"
+    },
+    {
+      "href": "/hire/legal",
+      "text": "Luật sư"
+    },
+    {
+      "href": "/hire/manufacturing",
+      "text": "Chuyên viên sản xuất"
+    },
+    {
+      "href": "/hire/logistics-shipping",
+      "text": "Chuyên gia logistics"
+    },
+    {
+      "href": "/hire/photoshop",
+      "text": "Nhà thiết kế Photoshop"
+    },
+    {
+      "href": "/hire/illustration",
+      "text": "Chuyên viên đồ họa Illustrator"
+    },
+    {
+      "href": "/hire/motion-graphics",
+      "text": "Nhà thiết kế đồ họa chuyển động"
+    },
+    {
+      "href": "/hire/2d-animation",
+      "text": "Diễn họa viên 2D"
+    },
+    {
+      "href": "/hire/3d-animation",
+      "text": "Diễn họa viên 3D"
+    },
+    {
+      "href": "/hire/business-cards",
+      "text": "Nhà thiết kế danh thiếp"
+    },
+    {
+      "href": "/hire/tattoo-design",
+      "text": "Nhà thiết kế hình xăm"
+    },
+    {
+      "href": "/hire/stationery-design",
+      "text": "Nhà thiết kế văn phòng phẩm"
+    },
+    {
+      "href": "/hire/fashion-design",
+      "text": "Nhà thiết kế thời trang"
+    },
+    {
+      "href": "/hire/brochure-design",
+      "text": "Nhà thiết kế tờ quảng cáo"
+    },
+    {
+      "href": "/hire/tshirts",
+      "text": "Nhà thiết kế áo thun"
+    },
+    {
+      "href": "/hire/graphic-design",
+      "text": "Nhà thiết kế đồ họa khác"
+    },
+    {
+      "href": "/hire/3d-modelling",
+      "text": "Chuyên viên mô hình 3D"
+    },
+    {
+      "href": "/hire/rendering",
+      "text": "Chuyên viên render 3D"
+    },
+    {
+      "href": "/hire/3d-design",
+      "text": "Nhà thiết kế đồ họa 3D khác"
+    },
+    {
+      "href": "/hire/wordpress",
+      "text": "Nhà thiết kế web bằng Wordpress"
+    },
+    {
+      "href": "/hire/squarespace",
+      "text": "Nhà thiết kế web bằng Squarespace"
+    },
+    {
+      "href": "/hire/wix",
+      "text": "Nhà thiết kế web bằng Wix"
+    },
+    {
+      "href": "/hire/shopify",
+      "text": "Nhà thiết kế web bằng Shopify"
+    },
+    {
+      "href": "/hire/magento",
+      "text": "Nhà thiết kế web bằng Magento"
+    },
+    {
+      "href": "/hire/php",
+      "text": "Lập trình viên web PHP"
+    },
+    {
+      "href": "/hire/html5",
+      "text": "Lập trình viên web HTML5"
+    },
+    {
+      "href": "/hire/css",
+      "text": "Lập trình viên web CSS"
+    },
+    {
+      "href": "/hire/javascript",
+      "text": "Lập trình viên web Javascript"
+    },
+    {
+      "href": "/hire/ruby-on-rails",
+      "text": "Lập trình viên web Ruby on Rails"
+    },
+    {
+      "href": "/hire/nodejs",
+      "text": "Lập trình viên web node.js"
+    },
+    {
+      "href": "/hire/angular-js",
+      "text": "Lập trình viên web angular.js"
+    },
+    {
+      "href": "/hire/react-js",
+      "text": "Lập trình viên web react.js"
+    },
+    {
+      "href": "/hire/web-development",
+      "text": "Lập trình viên web khác"
+    },
+    {
+      "href": "/hire/ios-development",
+      "text": "Lập trình viên ứng dụng di động iPhone"
+    },
+    {
+      "href": "/hire/android",
+      "text": "Lập trình viên ứng dụng di động android"
+    },
+    {
+      "href": "/hire/phonegap",
+      "text": "Lập trình viên ứng dụng di động PhoneGap"
+    },
+    {
+      "href": "/hire/flutter",
+      "text": "Lập trình viên ứng dụng di động Flutter"
+    },
+    {
+      "href": "/hire/xamarin",
+      "text": "Lập trình viên ứng dụng di động Xamarin"
+    },
+    {
+      "href": "/hire/mobile-development",
+      "text": "Lập trình viên ứng dụng di động khác"
+    },
+    {
+      "href": "/hire/articles",
+      "text": "Chuyên viên viết bài"
+    },
+    {
+      "href": "/hire/copywriting",
+      "text": "Copywriter"
+    },
+    {
+      "href": "/hire/ghostwriting",
+      "text": "Người viết hộ"
+    },
+    {
+      "href": "/hire/writing",
+      "text": "Người viết nội dung khác"
+    },
+    {
+      "href": "/hire/social-media-marketing",
+      "text": "Chuyên viên tiếp thị mạng xã hội"
+    },
+    {
+      "href": "/hire/internet-marketing",
+      "text": "Chuyên viên tiếp thị internet khác"
+    },
+    {
+      "href": "/hire/java",
+      "text": "Lập trình viên Java"
+    },
+    {
+      "href": "/cplusplus-programming",
+      "text": "Lập trình viên C++"
+    },
+    {
+      "href": "/hire/python",
+      "text": "Lập trình viên Python"
+    },
+    {
+      "href": "/hire/database-programming",
+      "text": "Lập trình viên CSDL"
+    },
+    {
+      "href": "/hire/linux",
+      "text": "Lập trình viên Linux"
+    },
+    {
+      "href": "/hire/software-development",
+      "text": "Lập trình viên Objective C"
+    },
+    {
+      "href": "/hire/web-development",
+      "text": "Lập trình viên khác"
+    },
+    {
+      "href": "/hire/spanish",
+      "text": "Biên dịch viên tiếng Tây Ban Nha"
+    },
+    {
+      "href": "/hire/english-uk-translator",
+      "text": "Biên dịch viên tiếng Anh"
+    },
+    {
+      "href": "/hire/portuguese",
+      "text": "Biên dịch viên tiếng Bồ Đào Nha"
+    },
+    {
+      "href": "/hire/french-translator",
+      "text": "Biên dịch viên tiếng Pháp"
+    },
+    {
+      "href": "/hire/german",
+      "text": "Biên dịch viên tiếng Đức"
+    },
+    {
+      "href": "/hire/translation",
+      "text": "Biên dịch viên ngôn ngữ khác"
+    },
+    {
+      "href": "/hire",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/freelancers",
+      "text": "Làm việc với các freelancer quốc tế Tìm hiểu thêm"
+    },
+    {
+      "href": "/hire/software-development",
+      "text": "Nơi tìm thấy các lập trình viên giỏi nhất Tìm hiểu thêm"
+    },
+    {
+      "href": "/local",
+      "text": "Bạn có cần một freelancer địa phương? Tìm hiểu thêm"
+    },
+    {
+      "href": "/freelancers",
+      "text": "Xây dựng đội ngũ quốc tế Tìm hiểu thêm"
+    },
+    {
+      "href": "/freelancers",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/freelancers/united-states",
+      "text": "Mỹ"
+    },
+    {
+      "href": "/freelancers/united-kingdom",
+      "text": "Anh"
+    },
+    {
+      "href": "/freelancers/canada",
+      "text": "Canada"
+    },
+    {
+      "href": "/freelancers/india",
+      "text": "Ấn Độ"
+    },
+    {
+      "href": "/freelancers/australia",
+      "text": "Úc"
+    },
+    {
+      "href": "/freelancers/pakistan",
+      "text": "Pakistan"
+    },
+    {
+      "href": "/freelancers/bangladesh",
+      "text": "Bangladesh"
+    },
+    {
+      "href": "/freelancers/indonesia",
+      "text": "Indonesia"
+    },
+    {
+      "href": "/freelancers/brazil",
+      "text": "Brazil"
+    },
+    {
+      "href": "/freelancers/china",
+      "text": "Trung Quốc"
+    },
+    {
+      "href": "/freelancers/turkey",
+      "text": "Thổ Nhĩ Kỳ"
+    },
+    {
+      "href": "/freelancers/philippines",
+      "text": "Philippine"
+    },
+    {
+      "href": "/freelancers",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/jobs%3Ffeatured%3Dtrue",
+      "text": "Việc làm nổi bật Khám phá danh sách các dự án tiêu biểu hàng đầu của chúng tôi."
+    },
+    {
+      "href": "/contest",
+      "text": "Tìm cuộc thi Giải phóng năng lực của bạn và tìm kiếm các cuộc thi cho freelancer"
+    },
+    {
+      "href": "/jobs/web-development",
+      "text": "Việc làm về website"
+    },
+    {
+      "href": "/jobs/graphic-design",
+      "text": "Việc làm thiết kế đồ họa"
+    },
+    {
+      "href": "/jobs/data-entry",
+      "text": "Việc làm nhập liệu"
+    },
+    {
+      "href": "/jobs/mobile-phone",
+      "text": "Việc phát triển ứng dụng di động"
+    },
+    {
+      "href": "/jobs/internet-marketing",
+      "text": "Việc làm tiếp thị internet"
+    },
+    {
+      "href": "/local",
+      "text": "Việc làm địa phương"
+    },
+    {
+      "href": "/jobs/software-development",
+      "text": "Việc làm phát triển phần mềm"
+    },
+    {
+      "href": "/jobs/internet-marketing",
+      "text": "Việc làm tiếp thị internet"
+    },
+    {
+      "href": "/jobs/data-entry",
+      "text": "Việc làm nhập liệu"
+    },
+    {
+      "href": "/jobs/seo",
+      "text": "Việc làm SEO"
+    },
+    {
+      "href": "/jobs/writing",
+      "text": "Việc viết lách"
+    },
+    {
+      "href": "/jobs/legal",
+      "text": "Việc pháp lý"
+    },
+    {
+      "href": "/jobs/finance",
+      "text": "Việc làm tài chính"
+    },
+    {
+      "href": "/jobs/manufacturing",
+      "text": "Việc làm sản xuất"
+    },
+    {
+      "href": "/logistics-shipping",
+      "text": "Việc làm logistics"
+    },
+    {
+      "href": "/jobs/graphic-design",
+      "text": "Việc làm thiết kế đồ họa"
+    },
+    {
+      "href": "/jobs/web-development",
+      "text": "Việc làm website"
+    },
+    {
+      "href": "/jobs/mobile-phone",
+      "text": "Việc làm phát triển ứng dụng di động"
+    },
+    {
+      "href": "/jobs/software-development",
+      "text": "Việc làm phát triển phần mềm"
+    },
+    {
+      "href": "/jobs/internet-marketing",
+      "text": "Việc làm tiếp thị trên internet"
+    },
+    {
+      "href": "/jobs/data-entry",
+      "text": "Việc làm nhập liệu"
+    },
+    {
+      "href": "/jobs/seo",
+      "text": "Việc làm SEO"
+    },
+    {
+      "href": "/jobs/writing",
+      "text": "Việc viết lách"
+    },
+    {
+      "href": "/jobs/legal",
+      "text": "Việc làm pháp lý"
+    },
+    {
+      "href": "/jobs/finance",
+      "text": "Việc làm tài chính"
+    },
+    {
+      "href": "/jobs/manufacturing",
+      "text": "Việc làm sản xuất"
+    },
+    {
+      "href": "/jobs/logistics-shipping",
+      "text": "Việc làm logistics"
+    },
+    {
+      "href": "/jobs/logo-design",
+      "text": "Việc thiết kế logo"
+    },
+    {
+      "href": "/jobs/website-design",
+      "text": "Việc thiết kế web"
+    },
+    {
+      "href": "/jobs/banner-design",
+      "text": "Việc thiết kế banner"
+    },
+    {
+      "href": "/jobs/3d-modelling",
+      "text": "Việc làm mô hình 3D"
+    },
+    {
+      "href": "/jobs/photoshop",
+      "text": "Việc làm Photoshop"
+    },
+    {
+      "href": "/jobs/illustration",
+      "text": "Việc làm Ilustration"
+    },
+    {
+      "href": "/jobs/3d-animation",
+      "text": "Việc làm đồ họa 3D"
+    },
+    {
+      "href": "/jobs/2d-animation",
+      "text": "Việc làm đồ họa 2D"
+    },
+    {
+      "href": "/jobs/graphic-design",
+      "text": "Việc thiết kế đồ họa khác"
+    },
+    {
+      "href": "/jobs/php",
+      "text": "Việc làm PHP"
+    },
+    {
+      "href": "/jobs/javascript",
+      "text": "Việc làm Javascript"
+    },
+    {
+      "href": "/jobs/dot-net",
+      "text": "Việc làm .NET"
+    },
+    {
+      "href": "/jobs/css",
+      "text": "Việc làm CSS"
+    },
+    {
+      "href": "/jobs/amazon-web-services",
+      "text": "Việc làm về dịch vụ web Amazon"
+    },
+    {
+      "href": "/jobs/html5",
+      "text": "Việc làm HTML5"
+    },
+    {
+      "href": "/jobs/wordpress",
+      "text": "Việc làm Wordpress"
+    },
+    {
+      "href": "/jobs/wix",
+      "text": "Việc làm Wix"
+    },
+    {
+      "href": "/jobs/squarespace",
+      "text": "Việc làm Squarespace"
+    },
+    {
+      "href": "/jobs/shopify",
+      "text": "Việc làm Shopify"
+    },
+    {
+      "href": "/jobs/magento",
+      "text": "Việc làm Magento"
+    },
+    {
+      "href": "/jobs/database-development",
+      "text": "Việc lập trình cơ sở dữ liệu"
+    },
+    {
+      "href": "/jobs/web-development",
+      "text": "Việc làm website khác"
+    },
+    {
+      "href": "/jobs/ios-development",
+      "text": "Việc lập trình app iPhone"
+    },
+    {
+      "href": "/jobs/android",
+      "text": "Việc lập trình app android"
+    },
+    {
+      "href": "/jobs/flutter",
+      "text": "Việc làm Flutter"
+    },
+    {
+      "href": "/jobs/xamarin",
+      "text": "Việc làm Xamarin"
+    },
+    {
+      "href": "/jobs/phonegap",
+      "text": "Việc làm PhoneGap"
+    },
+    {
+      "href": "/jobs/mobile-phone",
+      "text": "Việc phát triển app di động khác"
+    },
+    {
+      "href": "/jobs/linux",
+      "text": "Việc làm Linux"
+    },
+    {
+      "href": "/jobs/cplusplus-programming",
+      "text": "Việc phát triển phần mềm C++"
+    },
+    {
+      "href": "/jobs/c-sharp-programming",
+      "text": "Việc phát triển phần mềm C#"
+    },
+    {
+      "href": "/jobs/objective-c",
+      "text": "Việc phát triển phần mềm Objective C"
+    },
+    {
+      "href": "/jobs/ruby-on-rails",
+      "text": "Việc phát triển phần mềm Ruby On Rails"
+    },
+    {
+      "href": "/jobs/python",
+      "text": "Việc phát triển phần mềm Python"
+    },
+    {
+      "href": "/jobs/java",
+      "text": "Việc phát triển phần mềm Java"
+    },
+    {
+      "href": "/jobs/software-development",
+      "text": "Việc phát triển phần mềm khác"
+    },
+    {
+      "href": "/jobs/social-media-marketing",
+      "text": "Việc tiếp thị qua mạng xã hội"
+    },
+    {
+      "href": "/jobs/internet-marketing",
+      "text": "Việc tiếp thị qua mạng internet khác"
+    },
+    {
+      "href": "/jobs/copywriting",
+      "text": "Việc làm copywrite"
+    },
+    {
+      "href": "/jobs/ghostwriting",
+      "text": "Việc viết bài hộ"
+    },
+    {
+      "href": "/jobs/articles",
+      "text": "Việc viết bài nội dung"
+    },
+    {
+      "href": "/jobs/writing",
+      "text": "Việc viết lách khác"
+    },
+    {
+      "href": "/jobs",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/jobs?languages=en",
+      "text": "Việc làm tiếng Anh"
+    },
+    {
+      "href": "/jobs?languages=es",
+      "text": "Việc làm tiếng Tây Ban Nha"
+    },
+    {
+      "href": "/jobs?languages=pt",
+      "text": "Việc làm tiếng Bồ Đào Nha"
+    },
+    {
+      "href": "/jobs?languages=fr",
+      "text": "Việc làm tiếng Pháp"
+    },
+    {
+      "href": "/jobs?languages=de",
+      "text": "Việc làm tiếng Đức"
+    },
+    {
+      "href": "/jobs?languages=hi",
+      "text": "Các công việc ở Hindi"
+    },
+    {
+      "href": "/jobs?languages=zh",
+      "text": "Việc làm tiếng Hoa"
+    },
+    {
+      "href": "/jobs?languages=ja",
+      "text": "Việc làm tiếng Nhật"
+    },
+    {
+      "href": "/jobs",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/enterprise",
+      "text": "Doanh nghiệp Tạo lợi thế cạnh tranh cho bạn với Freelancer Doanh Nghiệp."
+    },
+    {
+      "href": "/globalfleet",
+      "text": "Dịch vụ tận nơi Thực hiện dịch vụ ở khắp mọi nơi trên thế giới theo nhu cầu và q"
+    },
+    {
+      "href": "/ai",
+      "text": "AI trong kinh doanh Hãy để các chuyên gia về công nghệ AI mới nhất chuyển đổi ki"
+    },
+    {
+      "href": "/info/how-it-works",
+      "text": "How it works"
+    },
+    {
+      "href": "/contest",
+      "text": "Contests"
+    },
+    {
+      "href": "/quotes",
+      "text": "Quotes"
+    },
+    {
+      "href": "https://www.photoanywhere.com",
+      "text": "Photo Anywhere"
+    },
+    {
+      "href": "/showcase",
+      "text": "Showcase"
+    },
+    {
+      "href": "/innovation",
+      "text": "Thử thách đổi mới Biến thách thức thành đột phá với trung tâm đổi mới sáng tạo l"
+    },
+    {
+      "href": "https://developers.freelancer.com/",
+      "text": "Freelancer API Sử dụng Freelancer API để tiếp cận lực lượng các freelancer giàu "
+    },
+    {
+      "href": "/local",
+      "text": "Việc làm địa phương Tìm hỗ trợ từ khắp mọi nơi trên thế giới."
+    },
+    {
+      "href": "/preferred-freelancer-program",
+      "text": "Chương Trình Freelancer Ưa Thích"
+    },
+    {
+      "href": "/verified",
+      "text": "Xác thực bởi Freelancer"
+    },
+    {
+      "href": "/project-management",
+      "text": "Quản lý dự án"
+    },
+    {
+      "href": "/recruiter",
+      "text": "Tuyển dụng viên"
+    },
+    {
+      "href": "/membership",
+      "text": "Thành viên"
+    },
+    {
+      "href": "/articles/starting-your-business/finding-the-best-freelancer",
+      "text": "Cách để thuê một freelancer phù hợp cho dự án của bạn Tìm hiểu thêm"
+    },
+    {
+      "href": "/discover/website-design",
+      "text": "Lấy ý tưởng thiết kế web"
+    },
+    {
+      "href": "/discover/mobile-app-development",
+      "text": "Lấy ý tưởng làm app di động"
+    },
+    {
+      "href": "/discover/graphic-design",
+      "text": "Lấy ý tưởng thiết kế đồ họa"
+    },
+    {
+      "href": "/discover/logo-design",
+      "text": "Lấy ý tưởng thiết kế logo"
+    },
+    {
+      "href": "/discover/3d-modeling",
+      "text": "Lấy ý tưởng làm mô hình 3D"
+    },
+    {
+      "href": "/discover",
+      "text": "Lấy ý tưởng vẽ Illustration"
+    },
+    {
+      "href": "/discover/branding",
+      "text": "Lấy ý tưởng làm thương hiệu"
+    },
+    {
+      "href": "/discover/product-design",
+      "text": "Lấy ý tưởng thiết kế sản phẩm"
+    },
+    {
+      "href": "/discover/package-design",
+      "text": "Lấy ý tưởng thiết kế bao bì"
+    },
+    {
+      "href": "/discover/wordpress",
+      "text": "Lấy ý tưởng Wordpress"
+    },
+    {
+      "href": "/discover",
+      "text": "Xem tất cả"
+    },
+    {
+      "href": "/community/articles/how-to-earn-money-at-freelancer-com",
+      "text": "Cách để bắt đầu kiếm tiền từ nghề freelance Tìm hiểu thêm"
+    },
+    {
+      "href": "/what-is-adobe-photoshop",
+      "text": "Adobe Photoshop là gì"
+    },
+    {
+      "href": "/what-is-android-app-development",
+      "text": "Phát triển ứng dụng Android là gì"
+    },
+    {
+      "href": "/what-is-article-writing",
+      "text": "Công việc viết nội dung là gì"
+    },
+    {
+      "href": "/what-is-data-entry-guide",
+      "text": "Nhập liệu là gì"
+    },
+    {
+      "href": "/what-is-graphic-design-about",
+      "text": "Thiết kế đồ họa là gì"
+    },
+    {
+      "href": "/what-is-html",
+      "text": "HTML là gì"
+    },
+    {
+      "href": "/what-is-internet-marketing",
+      "text": "Tiếp thị internet là gì"
+    },
+    {
+      "href": "/what-is-iphone-app-development",
+      "text": "Phát triển ứng dụng iPhone là gì"
+    },
+    {
+      "href": "/what-is-javascript",
+      "text": "Javascript là gì"
+    },
+    {
+      "href": "/what-is-logo-design",
+      "text": "Thiết kế logo là gì"
+    },
+    {
+      "href": "/what-is-mobile-application-development",
+      "text": "Phát triển ứng dụng di động là gì"
+    },
+    {
+      "href": "/what-is-php",
+      "text": "PHP là gì"
+    },
+    {
+      "href": "/what-is-python",
+      "text": "Python là gì"
+    },
+    {
+      "href": "/what-is-software-architecture",
+      "text": "Kiến trúc phần mềm là gì"
+    },
+    {
+      "href": "/what-is-web-design",
+      "text": "Thiết kế web là gì"
+    },
+    {
+      "href": "/what-is-wordpress",
+      "text": "Wordpress là gì"
+    },
+    {
+      "href": "/articles",
+      "text": "Xem tất cả"
+    },
+    {
+      "href": "/login",
+      "text": "Đăng nhập"
+    },
+    {
+      "href": "/signup",
+      "text": "Đăng ký"
+    },
+    {
+      "href": "/post-project",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project",
+      "text": "Thuê freelancer"
+    },
+    {
+      "href": "/signup",
+      "text": "Kiếm tiền từ việc freelance"
+    },
+    {
+      "href": "/post-project",
+      "text": "Bắt đầu ngay"
+    },
+    {
+      "href": "/launch",
+      "text": ""
+    },
+    {
+      "href": "/launch",
+      "text": "Ra mắt ngay"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20building%20a%20humanoid%20robot%20and%20need%20a%20robotics%20engineer%20to%20design%20fully%20articulating%20limb%20assemblies.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20building%20a%20humanoid%20robot%20and%20need%20a%20robotics%20engineer%20to%20design%20fully%20articulating%20limb%20assemblies.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/manufacturing",
+      "text": ""
+    },
+    {
+      "href": "/manufacturing",
+      "text": "Biến điều đó thành hiện thực"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20launching%20a%20coffee%20brand%20and%20need%20a%20designer%20to%20craft%20an%20identity%20that%20stands%20out%20on%20the%20shelf.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20launching%20a%20coffee%20brand%20and%20need%20a%20designer%20to%20craft%20an%20identity%20that%20stands%20out%20on%20the%20shelf.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I%20have%20an%20app%20idea%20ready%20to%20build%20%E2%80%94%20I%20need%20a%20developer%20to%20design,%20ship,%20and%20launch%20it%20on%20iOS.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I%20have%20an%20app%20idea%20ready%20to%20build%20%E2%80%94%20I%20need%20a%20developer%20to%20design,%20ship,%20and%20launch%20it%20on%20iOS.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project",
+      "text": "Bắt đầu ngay"
+    },
+    {
+      "href": "/post-project?project_title=I%20have%20building%20blueprints%20and%20need%20an%20interior%20designer%20to%20bring%20the%20space%20to%20life%20in%203D.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I%20have%20building%20blueprints%20and%20need%20an%20interior%20designer%20to%20bring%20the%20space%20to%20life%20in%203D.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20prototyping%20an%20all-terrain%20vehicle%20and%20need%20a%20product%20designer%20to%20develop%20the%20tread%20system.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20prototyping%20an%20all-terrain%20vehicle%20and%20need%20a%20product%20designer%20to%20develop%20the%20tread%20system.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20producing%20a%20feature%20film%20and%20need%20a%20VFX%20artist%20to%20create%20cinematic%20CGI%20sequences.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20producing%20a%20feature%20film%20and%20need%20a%20VFX%20artist%20to%20create%20cinematic%20CGI%20sequences.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20preparing%20for%20a%20major%20cosplay%20event%20and%20need%20a%20designer%20to%20build%20a%20screen-accurate%20helmet.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20preparing%20for%20a%20major%20cosplay%20event%20and%20need%20a%20designer%20to%20build%20a%20screen-accurate%20helmet.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20converting%20a%20historic%20building%20and%20need%20a%20licensed%20architect%20to%20design%20a%20modern%20addition.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20converting%20a%20historic%20building%20and%20need%20a%20licensed%20architect%20to%20design%20a%20modern%20addition.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/hire/website-design",
+      "text": "Thiết kế web"
+    },
+    {
+      "href": "/hire/mobile-app-development",
+      "text": "Ứng dụng di động"
+    },
+    {
+      "href": "/hire/android",
+      "text": "Ứng dụng android"
+    },
+    {
+      "href": "/hire/iphone-app-development",
+      "text": "Ứng dụng iPhone"
+    },
+    {
+      "href": "/hire/software-architecture",
+      "text": "Kiến trúc phần mềm"
+    },
+    {
+      "href": "/hire/graphic-design",
+      "text": "Thiết kế đồ họa"
+    },
+    {
+      "href": "/hire/logo-design",
+      "text": "Thiết kế logo"
+    },
+    {
+      "href": "/hire/public-relations",
+      "text": "Quan hệ công chúng"
+    },
+    {
+      "href": "/hire/logistics-shipping",
+      "text": "Vận chuyển logistics"
+    },
+    {
+      "href": "/hire/proofreading",
+      "text": "Đọc bông"
+    },
+    {
+      "href": "/hire/translation",
+      "text": "Dịch thuật"
+    },
+    {
+      "href": "/hire/research",
+      "text": "Nghiên cứu"
+    },
+    {
+      "href": "/hire/research-writing",
+      "text": "Viết bài nghiên cứu"
+    },
+    {
+      "href": "/hire/articles",
+      "text": "Viết bài"
+    },
+    {
+      "href": "/hire/WebScraping",
+      "text": "Web Scraping"
+    },
+    {
+      "href": "/hire/html",
+      "text": "HTML"
+    },
+    {
+      "href": "/hire/css",
+      "text": "CSS"
+    },
+    {
+      "href": "/hire/html5",
+      "text": "HTML5"
+    },
+    {
+      "href": "/hire/javascript",
+      "text": "Javascript"
+    },
+    {
+      "href": "/hire/data-processing",
+      "text": "Xử lý dữ liệu"
+    },
+    {
+      "href": "/hire/python",
+      "text": "Python"
+    },
+    {
+      "href": "/hire/wordpress",
+      "text": "Wordpress"
+    },
+    {
+      "href": "/hire/web-search",
+      "text": "Tìm kiếm web"
+    },
+    {
+      "href": "/hire/finance",
+      "text": "Tài chính"
+    },
+    {
+      "href": "/hire",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/hire/legal",
+      "text": "Pháp lý"
+    },
+    {
+      "href": "/hire/linux",
+      "text": "Linux"
+    },
+    {
+      "href": "/hire/manufacturing",
+      "text": "Sản xuất"
+    },
+    {
+      "href": "/hire/data-entry",
+      "text": "Nhập liệu"
+    },
+    {
+      "href": "/hire/content-writing",
+      "text": "Viết nội dung"
+    },
+    {
+      "href": "/hire/marketing",
+      "text": "Tiếp thị"
+    },
+    {
+      "href": "/hire/excel",
+      "text": "Excel"
+    },
+    {
+      "href": "/hire/ghostwriting",
+      "text": "Ghostwriting"
+    },
+    {
+      "href": "/hire/copywriting",
+      "text": "Viết bài quảng cáo"
+    },
+    {
+      "href": "/hire/accounting",
+      "text": "Kế toán"
+    },
+    {
+      "href": "/hire/mysql",
+      "text": "MySQL"
+    },
+    {
+      "href": "/hire/cplusplus-programming",
+      "text": "Lập trình C++"
+    },
+    {
+      "href": "/hire/banner-design",
+      "text": "Thiết kế banner"
+    },
+    {
+      "href": "/hire/illustration",
+      "text": "Vẽ minh họa"
+    },
+    {
+      "href": "/hire/link-building",
+      "text": "Xây dựng liên kết"
+    },
+    {
+      "href": "/hire/c-sharp-programming",
+      "text": "Lập trình C#"
+    },
+    {
+      "href": "/hire/php",
+      "text": "PHP"
+    },
+    {
+      "href": "/hire/3d-modelling",
+      "text": "Mô hình 3D"
+    },
+    {
+      "href": "/hire/photoshop",
+      "text": "Photoshop"
+    },
+    {
+      "href": "/hire/technical-writing",
+      "text": "Viết bài kỹ thuật"
+    },
+    {
+      "href": "/hire/blog",
+      "text": "Viết blog"
+    },
+    {
+      "href": "/hire/internet-marketing",
+      "text": "Tiếp thị internet"
+    },
+    {
+      "href": "/hire/ecommerce",
+      "text": "Thương mại điện tử"
+    },
+    {
+      "href": "/hire",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/ai",
+      "text": "Khám phá Dịch vụ AI"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20assembling%20a%20humanoid%20robot%20and%20need%20a%20mechanical%20engineer%20for%20the%20critical%20build%20phase.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20assembling%20a%20humanoid%20robot%20and%20need%20a%20mechanical%20engineer%20for%20the%20critical%20build%20phase.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I%20have%20a%20game%20concept%20and%20need%20a%20developer%20to%20build%20it%20into%20a%20mobile%20gaming%20experience.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I%20have%20a%20game%20concept%20and%20need%20a%20developer%20to%20build%20it%20into%20a%20mobile%20gaming%20experience.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20refreshing%20my%20fashion%20label%20and%20need%20creative%20services%20for%20branding,%20photography,%20and%20art%20direction.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20refreshing%20my%20fashion%20label%20and%20need%20creative%20services%20for%20branding,%20photography,%20and%20art%20direction.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20planning%20a%20small%20structure%20and%20need%20a%203D%20artist%20to%20render%20photoreal%20visuals%20of%20my%20design.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20planning%20a%20small%20structure%20and%20need%20a%203D%20artist%20to%20render%20photoreal%20visuals%20of%20my%20design.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/post-project?project_title=I'm%20modifying%20my%20vehicle%20for%20off-road%20performance%20and%20need%20an%20automotive%20specialist%20to%20spec%20the%20build.",
+      "text": ""
+    },
+    {
+      "href": "/post-project?project_title=I'm%20modifying%20my%20vehicle%20for%20off-road%20performance%20and%20need%20an%20automotive%20specialist%20to%20spec%20the%20build.",
+      "text": "Đăng dự án"
+    },
+    {
+      "href": "/enterprise",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/innovation",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "https://developers.freelancer.com/",
+      "text": "Xem thêm"
+    },
+    {
+      "href": "/",
+      "text": ""
+    },
+    {
+      "href": "/choose-your-country",
+      "text": "Vietnam / Tiếng Việt"
+    },
+    {
+      "href": "/support",
+      "text": "Giúp đỡ & Hỗ trợ"
+    },
+    {
+      "href": "/job",
+      "text": "Các lĩnh vực"
+    },
+    {
+      "href": "/jobs",
+      "text": "Dự án"
+    },
+    {
+      "href": "/contest",
+      "text": "Cuộc thi"
+    },
+    {
+      "href": "/freelancers",
+      "text": "Freelancer"
+    },
+    {
+      "href": "/enterprise",
+      "text": "Doanh nghiệp"
+    },
+    {
+      "href": "/innovation",
+      "text": "Thử thách đổi mới"
+    },
+    {
+      "href": "/ai",
+      "text": "Phát triển bằng AI"
+    },
+    {
+      "href": "/membership",
+      "text": "Gói thành viên"
+    },
+    {
+      "href": "/preferred-freelancer-program",
+      "text": "Chương trình Freelancer Ưa Thích"
+    },
+    {
+      "href": "/project-management",
+      "text": "Quản lý dự án"
+    },
+    {
+      "href": "/local",
+      "text": "Việc làm địa phương"
+    },
+    {
+      "href": "https://www.photoanywhere.com",
+      "text": "Photo Anywhere"
+    },
+    {
+      "href": "/showcase",
+      "text": "Giới thiệu dự án"
+    },
+    {
+      "href": "https://developers.freelancer.com",
+      "text": "API cho nhà phát triển"
+    },
+    {
+      "href": "/verified",
+      "text": "Đăng ký xác thực"
+    },
+    {
+      "href": "/about",
+      "text": "Về chúng tôi"
+    },
+    {
+      "href": "/info/how-it-works",
+      "text": "Cách thức hoạt động"
+    },
+    {
+      "href": "/about/security",
+      "text": "Bảo mật"
+    },
+    {
+      "href": "/investor",
+      "text": "Nhà đầu tư"
+    },
+    {
+      "href": "/sitemap",
+      "text": "Sơ đồ trang"
+    },
+    {
+      "href": "/about/stories",
+      "text": "Các câu chuyện"
+    },
+    {
+      "href": "/about/media",
+      "text": "Tin tức"
+    },
+    {
+      "href": "/about/management",
+      "text": "Đội ngũ"
+    },
+    {
+      "href": "/about/awards",
+      "text": "Giải thưởng"
+    },
+    {
+      "href": "/about/press",
+      "text": "Thông cáo báo chí"
+    },
+    {
+      "href": "/careers",
+      "text": "Nghề nghiệp"
+    },
+    {
+      "href": "/about/privacy",
+      "text": "Chính Sách Riêng Tư"
+    },
+    {
+      "href": "/about/terms",
+      "text": "Điều Khoản và Điều Kiện"
+    },
+    {
+      "href": "/dmca",
+      "text": "Chính sách bản quyền"
+    },
+    {
+      "href": "/info/codeofconduct",
+      "text": "Quy tắc ứng xử"
+    },
+    {
+      "href": "/feesandcharges",
+      "text": "Biểu phí dịch vụ"
+    },
+    {
+      "href": "https://www.escrow.com",
+      "text": "Escrow.com"
+    },
+    {
+      "href": "https://www.loadshift.com.au",
+      "text": "Loadshift"
+    },
+    {
+      "href": "https://www.warriorforum.com",
+      "text": "Warrior Forum"
+    },
+    {
+      "href": "/download",
+      "text": ""
+    },
+    {
+      "href": "/download",
+      "text": ""
+    },
+    {
+      "href": "https://facebook.com/fansoffreelancer",
+      "text": ""
+    },
+    {
+      "href": "https://x.com/freelancer",
+      "text": ""
+    },
+    {
+      "href": "https://youtube.com/freelancerchannel",
+      "text": ""
+    },
+    {
+      "href": "https://instagram.com/freelancerofficial",
+      "text": ""
+    }
+  ]
+}

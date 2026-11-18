@@ -1,0 +1,161 @@
+﻿#root
+  div #__pwa_loader_overlay__
+    img
+    div
+      div .__pwa_loader_spinner__
+  app-root
+    app-toast-alerts
+      fl-toast-alert-container .mobile:show ToastAlertOverlay
+        fl-container
+          div .ToastAlertInner
+            div .ToastAlertContainer
+      fl-toast-alert-container .mobile:hide
+        fl-container
+          div .ToastAlertInner
+            div .ToastAlertContainer
+    fl-pwa
+    fl-seo
+    router-outlet
+    app-logged-out-shell .ng-star-inserted
+      app-navigation-logged-out-home .ng-star-inserted
+        div .NavigationRoot
+          div .Backdrop mobile:hide tablet:hide ng-star-inserted
+          fl-container .NavigationContainer
+            fl-button .LogoButton
+              a .ButtonElement ng-star-inserted
+                fl-logo .ng-star-inserted
+                  picture .LogoPicture ng-star-inserted
+            app-navigation-logged-out-home-section-hire-freelancers .ng-star-inserted
+              app-navigation-logged-out-menu .mobile:hide tablet:hide
+                button .Trigger
+                  fl-icon .TriggerChevron
+                div .CardLayer
+                  fl-container .CardPositioner
+            app-navigation-logged-out-home-section-find-work .ng-star-inserted
+              app-navigation-logged-out-menu .mobile:hide tablet:hide
+                button .Trigger
+                  fl-icon .TriggerChevron
+                div .CardLayer
+                  fl-container .CardPositioner
+            app-navigation-logged-out-home-section-solutions .ng-star-inserted
+              app-navigation-logged-out-menu .mobile:hide tablet:hide
+                button .Trigger
+                  fl-icon .TriggerChevron
+                div .CardLayer
+                  fl-container .CardPositioner
+            div .NavigationSections
+              fl-language-switcher .NavigationItem LanguageSwitcher mr-small
+                fl-language-switcher-link .ng-star-inserted
+                  fl-link
+              fl-link .NavigationItem mr-small ng-star-inserted
+                a .LinkElement ng-star-inserted
+              fl-link .NavigationItem tablet:mr-small mr-small ng-star-inserted
+                a .LinkElement ng-star-inserted
+              div .NavigationItem mobile:hide tablet:hide ng-star-inserted
+                fl-button
+                  a .ButtonElement ng-star-inserted
+              fl-callout .desktop:hide ng-tns-c176985279-1 ng-star-inserted
+                fl-callout-trigger .ng-tns-c176985279-1
+                  div .MenuContainer
+      div .MainContent-body NavSpacing
+        router-outlet
+        ng-component .ng-star-inserted
+          app-home-page
+            fl-tracking-hotjar-init
+            app-home-page-hero
+              div .Hero ng-star-inserted
+                app-hero-image-carousel .CarouselSpace
+                  fl-picture .BackgroundImage IsShown ng-star-inserted
+                div .Hero-wrapper
+                  fl-container .Hero-content
+                  div .Hero-content-description-container mobile_small:hide tablet:hide
+            app-invitation-redirect-alert
+            div .Container
+              fl-container .ng-star-inserted
+                app-companies-trust-logo .mb-mid tablet:mb-none
+                  div .CompaniesTrust
+              fl-container
+                app-home-page-make-it-real .SectionFeature mb-mid desktop_large:mb-none
+                  fl-section-homepage-feature
+              app-home-page-discover-section .mb-xxlarge tablet:mb-none desktop_large:mb-small
+                div
+                  fl-container .FlexContainer
+              fl-container
+                app-home-page-global-talent .SectionFeature
+                  fl-section-homepage-feature
+              fl-container
+                app-as-seen-on
+                  div .CompaniesTrust
+              app-home-page-discover-section .Discover mb-xxlarge desktop:mb-xxxxlarge
+                div
+                  fl-container .FlexContainer
+              fl-container .HireCategoriesContainer
+                app-home-page-hire-categories .HireCategories mb-xxlarge tablet:mb-xxxxlarge
+                  fl-container .AnimationContainer ng-star-inserted
+                  fl-grid .Container ng-star-inserted
+                  div .HireCategories-list mobile:hide ng-star-inserted
+              fl-container .ng-star-inserted
+                app-home-page-ai-services
+                  div .Container mb-xxlarge desktop:mb-xxxxlarge
+              app-home-page-discover-section .mb-xxlarge tablet:mb-none
+                div
+                  fl-container .FlexContainer
+              fl-container
+                app-home-page-api-enterprise-v5 .SectionFeature
+                  fl-container .AnimationContainer ng-star-inserted
+                  fl-container .Container
+      app-give-get-footer .ng-tns-c191610728-2 ng-star-inserted
+      app-tracking-consent-banner .ng-star-inserted
+      app-footer .ng-star-inserted
+        app-footer-freelancer .ng-star-inserted
+          div .FooterSection
+            fl-container
+              fl-grid
+                fl-col
+                  fl-link .FooterInfo mb-small tablet:mb-large
+                  fl-language-switcher .FooterInfo mb-small
+                  div .FooterInfo mb-small
+                  div .FooterInfo mb-small
+                fl-col
+                  p .text-light text-body-16 font-bold mb-xsmall
+                  div .FooterNav mb-small
+                fl-col
+                  p .text-light text-body-16 font-bold mb-xsmall
+                  div .FooterNav mb-small
+                fl-col
+                  p .text-light text-body-16 font-bold mb-xsmall
+                  div .FooterNav mb-small
+                fl-col
+                  p .text-light text-body-16 font-bold mb-xsmall
+                  div .FooterNav mb-small
+                fl-col .ng-star-inserted
+                  p .text-light text-body-16 font-bold mb-xsmall
+                  div .FooterAppStoreIcons
+                  fl-social-buttons .FooterSocialIcons
+          div .FooterSection
+            fl-container
+              fl-grid .FooterBordered
+                fl-col .tablet:mb-small desktop:mb-none
+                  p .FooterStats text-light font-bold mr-xxsmall
+                  p .FooterStatsCopy text-light text-body-16
+                fl-col .tablet:mb-small desktop:mb-none
+                  p .FooterStats text-light font-bold mr-xxsmall
+                  p .FooterStatsCopy text-light text-body-16
+                fl-col
+                  p .text-light text-body-12
+                  p .text-light text-body-12
+      fl-file-download-alert
+    fl-error-tracking
+    fl-location
+    fl-modal .ng-tns-c3994581482-0
+      div .ModalContainer ng-tns-c3994581482-0 ng-trigger ng-trigger-paneAnimatio
+        div .ModalDialog ng-tns-c3994581482-0
+          div .ModalContent ng-tns-c3994581482-0
+    fl-notifications
+    fl-update-native-alert
+    fl-theme
+  script
+  noscript
+  script
+  script
+  script #webapp-state

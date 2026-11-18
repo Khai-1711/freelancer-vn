@@ -1,0 +1,14 @@
+/about/privacy
+/about/terms
+/components/button
+/components/button/button-link
+/components/link/default
+/img/unknown.png
+/info/codeofconduct
+/internal/404
+/internal/auth/callback
+/internal/blank
+/internal/ip-blacklist-ban
+/internal/ip-blacklist-unblock
+/ngsw/state
+/properties/$1
