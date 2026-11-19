@@ -1,204 +1,397 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  ArrowRight,
+  Code2,
+  Smartphone,
+  Layers,
+  Cpu,
+  Server,
+  TrendingUp,
+  ShieldCheck,
+  Star,
+} from 'lucide-react';
+import { CATEGORIES, HERO_MEDIA } from '../data/mockData';
+import { useMarketplace } from '../context/MarketplaceContext';
+import Avatar from '../components/Avatar';
 
+const ICON_MAP = {
+  Code2,
+  Smartphone,
+  Layers,
+  Cpu,
+  Server,
+  TrendingUp,
+};
+
+const WORKFLOW_STEPS = [
+  {
+    num: '01.',
+    title: 'Đăng yêu cầu kỹ thuật rõ ràng',
+    desc: 'Mô tả phạm vi sản phẩm, chọn bộ kỹ năng bắt buộc và thiết lập khung ngân sách minh bạch chỉ trong 4 bước ngắn gọn.',
+  },
+  {
+    num: '02.',
+    title: 'So sánh đề xuất từ chuyên gia',
+    desc: 'Nhận báo giá kèm lộ trình thực hiện từ các kỹ sư và nhà thiết kế đã qua xác minh hồ sơ thực chiến.',
+  },
+  {
+    num: '03.',
+    title: 'Ký quỹ theo từng Milestone',
+    desc: 'Ngân sách được bảo vệ từng chặng và chỉ giải ngân khi bạn đã nghiệm thu mã nguồn hoặc thiết kế đạt chuẩn.',
+  },
+  {
+    num: '04.',
+    title: 'Bàn giao sạch & Đánh giá minh bạch',
+    desc: 'Nhận đầy đủ tài liệu kỹ thuật, mã nguồn gốc và ghi nhận đánh giá thực tế giúp hệ sinh thái ngày càng chất lượng.',
+  },
+];
+
+/**
+ * Trang chủ ViecTech:
+ * - Hero bất đối xứng kèm dự án nổi bật mới nhất lấy trực tiếp từ state
+ * - Dải chỉ số KPI thẳng hàng (tabular-nums)
+ * - Danh mục chuyên môn bấm lọc thẳng sang /jobs?category=...
+ * - Quy trình hợp tác 4 bước và danh sách chuyên gia xác minh
+ */
 export default function Home() {
-  const categories = [
-    { title: 'Website & IT', count: '14.280 dự án', icon: '💻', bg: 'bg-blue-50', text: 'text-[#007fed]' },
-    { title: 'Ứng dụng Mobile', count: '6.850 dự án', icon: '📱', bg: 'bg-pink-50', text: 'text-[#e60278]' },
-    { title: 'Thiết kế & Media', count: '9.120 dự án', icon: '🎨', bg: 'bg-purple-50', text: 'text-purple-600' },
-    { title: 'AI & Dữ liệu', count: '4.340 dự án', icon: '🤖', bg: 'bg-emerald-50', text: 'text-[#059669]' },
-    { title: 'Viết lách & Dịch', count: '5.190 dự án', icon: '✍️', bg: 'bg-amber-50', text: 'text-amber-600' },
-    { title: 'SEO & Marketing', count: '3.780 dự án', icon: '📈', bg: 'bg-rose-50', text: 'text-rose-600' },
-  ];
+  const { projects, freelancers, formatBudgetRange } = useMarketplace();
+  const featuredProjects = projects.slice(0, 3);
+  const topProject = projects[0];
+
+  const getCategoryCount = (catId) =>
+    projects.filter((p) => p.category === catId).length;
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative bg-white border-b border-slate-200 overflow-hidden py-16 sm:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Hero Text */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-pink-50 border border-pink-200 rounded-full px-4 py-1.5 text-xs text-[#e60278] font-bold">
-                <span className="w-2 h-2 rounded-full bg-[#e60278] animate-pulse"></span>
-                <span>Nền tảng việc làm tự do hàng đầu thế giới</span>
+      {/* Hero Section — Balanced Asymmetric Split */}
+      <section className="border-b border-white/[0.08] bg-obsidian-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-12 lg:pt-20 lg:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+            {/* Left Proposition */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-8">
+              <div className="space-y-6">
+                <p className="text-sm font-medium text-cobalt-400">
+                  Sàn dự án công nghệ &amp; thiết kế số tại Việt Nam
+                </p>
+
+                <h1 className="text-[clamp(2.25rem,4.2vw,3.6rem)] font-extrabold tracking-tight leading-[1.12] text-slate-50 text-balance">
+                  Kết nối đúng kỹ sư giỏi cho dự án công nghệ của bạn
+                </h1>
+
+                <p className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
+                  ViecTech giúp doanh nghiệp rút ngắn thời gian tuyển dụng nhân sự ngắn hạn và giúp lập trình viên, Product Designer tiếp cận dự án có ngân sách minh bạch, thanh toán bảo vệ theo milestone.
+                </p>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#151d2a] tracking-tight leading-[1.15]">
-                Thuê những <span className="text-[#e60278]">freelancer giỏi nhất</span> cho mọi công việc
-              </h1>
-
-              <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
-                Hàng triệu doanh nghiệp nhỏ và tập đoàn toàn cầu tin dùng Freelancer để biến ý tưởng thành hiện thực với chi phí tối ưu và chất lượng bảo đảm.
-              </p>
-
-              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
-                <Link 
-                  to="/post-project" 
-                  className="inline-flex items-center justify-center font-bold bg-[#e60278] hover:bg-[#c70066] text-white px-8 py-3.5 rounded-lg shadow-sm hover:shadow-md transition card-transition text-base"
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+                <Link
+                  to="/post-project"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
                 >
                   Đăng dự án miễn phí
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link 
-                  to="/jobs" 
-                  className="inline-flex items-center justify-center font-semibold bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 text-slate-800 px-8 py-3.5 rounded-lg transition card-transition text-base"
+                <Link
+                  to="/signup?role=freelancer"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 border border-white/10 text-slate-200 text-sm font-semibold transition-colors duration-150 whitespace-nowrap"
                 >
-                  Kiếm tiền Freelancer
+                  Đăng ký tìm việc làm
                 </Link>
-              </div>
-
-              <div className="pt-8 grid grid-cols-3 gap-6 border-t border-slate-100">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#151d2a]">91M+</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Freelancer toàn cầu</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#151d2a]">24M+</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Dự án đã hoàn thành</div>
-                </div>
-                <div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#059669]">98%</div>
-                  <div className="text-xs text-slate-500 font-medium mt-0.5">Khách hàng hài lòng</div>
-                </div>
               </div>
             </div>
 
-            {/* Right Hero Interactive Card */}
-            <div className="lg:col-span-5 relative">
-              <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-card-hover space-y-6">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Dự án mới đăng</span>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                    ● 14 người đang chào giá
-                  </span>
-                </div>
+            {/* Right Editorial Studio Visual with Measured Scrim */}
+            <div className="lg:col-span-5 flex flex-col">
+              <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] bg-obsidian-850 flex-1 min-h-[280px] lg:min-h-full">
+                <img
+                  src={HERO_MEDIA}
+                  alt="Không gian làm việc kỹ thuật phần mềm hiện đại tại TP. Hồ Chí Minh"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover lg:absolute lg:inset-0"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950/95 via-obsidian-950/45 to-transparent" />
 
+                {topProject && (
+                  <div className="absolute inset-x-0 bottom-0 p-6 space-y-2.5">
+                    <div className="flex items-center gap-2 text-xs text-slate-300">
+                      <span className="text-cobalt-400 font-semibold">Dự án vừa đăng</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{topProject.postedAt}</span>
+                      <span aria-hidden="true">·</span>
+                      <span className="tabular-nums-mono">{topProject.bids.length} chào giá</span>
+                    </div>
+                    <Link
+                      to={`/projects/${topProject.id}`}
+                      className="block text-base sm:text-lg font-bold text-white hover:text-cobalt-400 transition-colors leading-snug"
+                    >
+                      {topProject.title}
+                    </Link>
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-sm font-semibold text-semantic-emerald tabular-nums-mono">
+                        {formatBudgetRange(topProject, { compact: true })}
+                      </span>
+                      <Link
+                        to={`/projects/${topProject.id}`}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-200 hover:text-white transition-colors whitespace-nowrap"
+                      >
+                        Xem chi tiết
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Full-width 4-column KPI strip below Hero Split */}
+          <div className="mt-12 pt-10 border-t border-white/[0.08] grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-slate-50 tabular-nums-mono">
+                14.800+
+              </div>
+              <p className="text-sm text-slate-400 mt-1">Chuyên gia công nghệ đã xác minh</p>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-slate-50 tabular-nums-mono">
+                98.4%
+              </div>
+              <p className="text-sm text-slate-400 mt-1">Tỷ lệ hoàn thành đúng mốc bàn giao</p>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-semantic-emerald tabular-nums-mono">
+                420B+ VNĐ
+              </div>
+              <p className="text-sm text-slate-400 mt-1">Tổng giá trị hợp đồng qua Milestone</p>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-slate-50 tabular-nums-mono">
+                &lt; 2 giờ
+              </div>
+              <p className="text-sm text-slate-400 mt-1">Thời gian nhận chào giá đầu tiên</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Categories — Interactive Filter Links */}
+      <section className="py-16 lg:py-20 border-b border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div className="space-y-1.5">
+              <p className="text-sm font-medium text-cobalt-400">Lĩnh vực chuyên môn</p>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-50 text-balance">
+                Khám phá dự án theo nhóm kỹ năng
+              </h2>
+            </div>
+            <Link
+              to="/jobs"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-white transition-colors whitespace-nowrap"
+            >
+              Xem toàn bộ danh sách việc làm
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {CATEGORIES.map((cat) => {
+              const Icon = ICON_MAP[cat.icon] || Code2;
+              const liveCount = getCategoryCount(cat.id);
+              return (
+                <Link
+                  key={cat.id}
+                  to={`/jobs?category=${cat.id}`}
+                  className="group p-6 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-white/[0.08] hover:border-white/[0.16] transition-colors duration-150 flex flex-col justify-between gap-4"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-obsidian-950 border border-white/[0.08] text-cobalt-400 flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-xs text-slate-400 tabular-nums-mono">
+                      {liveCount > 0 ? `${liveCount} dự án mở` : 'Đang cập nhật'}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-slate-100 group-hover:text-cobalt-400 transition-colors">
+                      {cat.title}
+                    </h3>
+                    <p className="text-sm text-slate-400 mt-1.5 leading-relaxed">
+                      {cat.description}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Live Projects from State */}
+      <section className="py-16 lg:py-20 border-b border-white/[0.08] bg-obsidian-900/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div className="space-y-1.5">
+              <p className="text-sm font-medium text-cobalt-400">Cập nhật trực tiếp</p>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-50 text-balance">
+                Các dự án công nghệ nổi bật mới đăng
+              </h2>
+            </div>
+            <Link
+              to="/jobs"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-white transition-colors whitespace-nowrap"
+            >
+              Lọc theo kỹ năng &amp; ngân sách
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            {featuredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="p-6 rounded-xl bg-obsidian-850 border border-white/[0.08] hover:border-white/[0.16] transition-colors flex flex-col justify-between gap-5"
+              >
                 <div className="space-y-3">
-                  <h3 className="text-xl font-bold text-[#151d2a] hover:text-[#e60278] transition cursor-pointer">
-                    <Link to="/project-detail">
-                      Xây dựng Hệ thống Bán vé Trực tuyến & Payment Gateway
+                  <div className="flex items-center gap-2 text-xs text-slate-400">
+                    <span className="text-slate-300 font-medium">{project.categoryLabel}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{project.postedAt}</span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-100 leading-snug">
+                    <Link
+                      to={`/projects/${project.id}`}
+                      className="hover:text-cobalt-400 transition-colors"
+                    >
+                      {project.title}
                     </Link>
                   </h3>
-                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                    Chúng tôi cần tìm lập trình viên Fullstack có kinh nghiệm về Next.js, Node.js và tích hợp cổng thanh toán (VNPay / Stripe) để hoàn thiện nền tảng trong 30 ngày...
+
+                  <p className="text-sm text-slate-400 line-clamp-3 leading-relaxed">
+                    {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'].map(tag => (
-                      <span key={tag} className="text-xs font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-xs text-slate-400 pt-1">
+                    {project.skills.slice(0, 4).join(' · ')}
+                  </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between gap-3">
                   <div>
-                    <span className="text-xs text-slate-400 block font-medium">Ngân sách dự kiến</span>
-                    <span className="text-xl font-black text-[#059669]">30.000.000 VNĐ</span>
+                    <div className="text-base font-bold text-semantic-emerald tabular-nums-mono">
+                      {formatBudgetRange(project, { compact: true })}
+                    </div>
+                    <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-semantic-emerald" />
+                      <span>{project.bids.length} chào giá</span>
+                    </div>
                   </div>
-                  <Link 
-                    to="/project-detail" 
-                    className="inline-flex items-center text-xs font-bold bg-[#007fed] hover:bg-[#0067c2] text-white px-4 py-2.5 rounded-lg shadow-sm transition"
+                  <Link
+                    to={`/projects/${project.id}`}
+                    className="px-3.5 py-2 rounded-lg bg-obsidian-800 hover:bg-cobalt-500 text-slate-100 hover:text-white text-xs font-semibold border border-white/[0.08] hover:border-cobalt-500 transition-colors whitespace-nowrap"
                   >
-                    Xem & Đặt giá thầu
+                    Đặt giá thầu
                   </Link>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Companies */}
-      <section className="bg-[#f8f9fa] border-b border-slate-200 py-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <p className="text-center text-xs uppercase tracking-widest font-bold text-slate-400 mb-6">
-            Được tin cậy bởi các tổ chức và thương hiệu hàng đầu thế giới
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-60 grayscale hover:grayscale-0 transition-all">
-            {['Adobe', 'Meta', 'Deloitte', 'IBM', 'Airbus', 'Google Cloud'].map(name => (
-              <span key={name} className="font-extrabold text-xl tracking-tight text-slate-700">
-                {name}
-              </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Popular Categories */}
-      <section className="py-16 sm:py-20 bg-white border-b border-slate-200">
+      {/* Editorial 4-Step Mechanism + Adjacent Proof */}
+      <section className="py-16 lg:py-20 border-b border-white/[0.08]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#e60278]">Danh mục phổ biến</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#151d2a] mt-1">Cần thực hiện công việc gì?</h2>
-            </div>
-            <Link to="/jobs" className="mt-3 sm:mt-0 text-sm font-semibold text-[#007fed] hover:text-[#0067c2] flex items-center space-x-1">
-              <span>Xem tất cả 2.700+ kỹ năng</span>
-              <span>→</span>
-            </Link>
+          <div className="max-w-2xl mb-12 space-y-2">
+            <p className="text-sm font-medium text-cobalt-400">Quy trình hợp tác</p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-50 text-balance">
+              Từ bản mô tả ban đầu đến sản phẩm bàn giao hoàn thiện
+            </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((cat, i) => (
-              <Link 
-                key={i} 
-                to="/jobs" 
-                className="bg-[#f8f9fa] hover:bg-white border border-slate-200 hover:border-slate-300 hover:shadow-md rounded-xl p-5 text-center transition card-transition group"
-              >
-                <div className={`w-12 h-12 mx-auto rounded-full ${cat.bg} ${cat.text} flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition`}>
-                  {cat.icon}
-                </div>
-                <h4 className="text-sm font-bold text-[#151d2a] group-hover:text-[#e60278] transition">{cat.title}</h4>
-                <p className="text-xs text-slate-500 mt-1">{cat.count}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it Works */}
-      <section className="py-16 sm:py-20 bg-[#f8f9fa] border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#e60278]">Quy trình đơn giản</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#151d2a] mt-1">Cách thức hoạt động tại Freelancer</h2>
-            <p className="text-sm text-slate-600 mt-2">Từ đăng tin đến nhận sản phẩm hoàn thiện chỉ với 4 bước minh bạch và an toàn.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { num: '1', title: 'Đăng dự án miễn phí', desc: 'Mô tả công việc bạn cần làm, thiết lập ngân sách và thời hạn hoàn thành chỉ trong 2 phút.', color: 'bg-pink-100 text-[#e60278]' },
-              { num: '2', title: 'Chọn Freelancer phù hợp', desc: 'Nhận báo giá từ các chuyên gia hàng đầu. Xem hồ sơ, đánh giá sao và thảo luận trực tiếp.', color: 'bg-blue-100 text-[#007fed]' },
-              { num: '3', title: 'Thanh toán an toàn', desc: 'Hệ thống Giữ tiền Milestone: Chỉ giải ngân khi bạn đã nghiệm thu và hoàn toàn hài lòng 100%.', color: 'bg-emerald-100 text-[#059669]' },
-              { num: '4', title: 'Nhận kết quả & Đánh giá', desc: 'Nhận bàn giao mã nguồn hoặc file thiết kế gốc, để lại đánh giá uy tín cho freelancer.', color: 'bg-purple-100 text-purple-600' },
-            ].map(step => (
-              <div key={step.num} className="bg-white border border-slate-200 rounded-xl p-6 shadow-card hover:shadow-md transition card-transition">
-                <div className={`w-10 h-10 rounded-lg ${step.color} font-black flex items-center justify-center text-lg mb-4`}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {WORKFLOW_STEPS.map((step) => (
+              <div key={step.num} className="space-y-3 border-t border-white/10 pt-5">
+                <span className="text-sm font-semibold text-cobalt-400 tabular-nums-mono block">
                   {step.num}
-                </div>
-                <h4 className="font-bold text-[#151d2a] text-base mb-2">{step.title}</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+                </span>
+                <h3 className="text-base font-bold text-slate-100">{step.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
+
+          {/* Adjacent Proof: Verified Specialists */}
+          <div className="mt-16 pt-12 border-t border-white/[0.08]">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+              <div>
+                <h3 className="text-xl font-bold text-slate-100">
+                  Chuyên gia tiêu biểu đang sẵn sàng nhận dự án
+                </h3>
+                <p className="text-sm text-slate-400 mt-1">
+                  Hồ sơ được kiểm duyệt năng lực thực tế và đánh giá trực tiếp từ doanh nghiệp đã thuê.
+                </p>
+              </div>
+              <Link
+                to="/hire"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-cobalt-400 hover:text-cobalt-300 transition-colors whitespace-nowrap"
+              >
+                Xem toàn bộ chuyên gia
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {freelancers.slice(0, 3).map((person) => (
+                <Link
+                  key={person.id}
+                  to={`/freelancers/${person.id}`}
+                  className="p-5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 border border-white/[0.08] transition-colors flex items-start gap-4"
+                >
+                  <Avatar src={person.avatar} name={person.name} size="md" />
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-sm font-bold text-slate-100 truncate">{person.name}</p>
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-semantic-amber tabular-nums-mono shrink-0">
+                        <Star className="w-3.5 h-3.5 fill-semantic-amber" />
+                        {person.rating.toFixed(1)}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-400 truncate">{person.role}</p>
+                    <p className="text-xs text-slate-500 pt-1">
+                      {person.location} · {person.completedProjects} dự án
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-[#151d2a] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Sẵn sàng bắt đầu dự án tuyệt vời tiếp theo?</h2>
-          <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base">
-            Hàng ngàn freelancer hàng đầu Việt Nam và quốc tế đang sẵn sàng hỗ trợ bạn ngay hôm nay.
+      {/* Conversion CTA */}
+      <section className="py-16 lg:py-20 bg-obsidian-900/60">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
+          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-50 text-balance">
+            Bắt đầu triển khai sản phẩm công nghệ ngay hôm nay
+          </h2>
+          <p className="text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
+            Đăng yêu cầu miễn phí để nhận đề xuất kỹ thuật trong vòng 2 giờ, hoặc hoàn thiện hồ sơ chuyên gia để ứng tuyển vào các dự án chất lượng cao.
           </p>
-          <div className="flex items-center justify-center space-x-4 pt-2">
-            <Link to="/post-project" className="font-bold bg-[#e60278] hover:bg-[#c70066] text-white px-8 py-3.5 rounded-lg shadow transition">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+            <Link
+              to="/post-project"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-sm font-semibold transition-colors whitespace-nowrap"
+            >
               Đăng dự án ngay
+              <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/jobs" className="font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-8 py-3.5 rounded-lg transition">
-              Duyệt danh sách việc làm
+            <Link
+              to="/signup?role=freelancer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 border border-white/10 text-slate-200 text-sm font-semibold transition-colors whitespace-nowrap"
+            >
+              Đăng ký tìm việc ngay
             </Link>
           </div>
         </div>

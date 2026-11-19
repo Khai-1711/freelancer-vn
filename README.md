@@ -1,148 +1,143 @@
-# 🚀 Freelancer VN - Nền Tảng Việc Làm & Tuyển Dụng Freelance (ReactJS + Tailwind CSS)
+# ViecTech — Sàn Dự Án & Chuyên Gia Công Nghệ Việt Nam
 
-Bản sao chuẩn xác (Pixel-Perfect Replica) của hệ thống **Freelancer.com (Việt Nam)** được xây dựng hoàn toàn mới bằng **ReactJS 18**, **Tailwind CSS 3** và **Vite 5**, bám sát 100% hệ thống thiết kế Light Theme từ Figma chính thức.
-
----
-
-## 🌟 Tính Năng Chính (Theo 2 Vai Trò Người Dùng)
-
-### 💼 1. Dành cho Freelancer (Người tìm việc)
-* **Khám phá dự án (`/jobs`):**
-  * Bộ lọc tìm kiếm thông minh: Theo loại dự án (Giá cố định, Theo giờ, Cuộc thi), mức ngân sách tối thiểu/tối đa, kỹ năng bắt buộc (React, Python, Figma, Next.js...).
-  * Lọc theo uy tín nhà tuyển dụng: Đã xác thực thanh toán, đã nạp tiền ký quỹ Milestone.
-  * Hiển thị thẻ công việc với huy hiệu nổi bật, mức giá chào thầu và số lượng đối thủ cạnh tranh.
-* **Chi tiết dự án & Đặt giá thầu (`/project-detail`):**
-  * Xem toàn bộ mô tả yêu cầu, kỹ năng bắt buộc, tài liệu đính kèm và danh sách các freelancer đã chào thầu.
-  * **Bảng tính đặt giá thầu tự động (Live Bid Calculator):** Tự động tính toán phí dịch vụ nền tảng (10%) và hiển thị chính xác số tiền thực nhận.
-  * Tùy chọn nâng cấp chào giá (Tài trợ thầu Top Bid, Cam kết bảo mật NDA).
-* **Hồ sơ năng lực chuyên nghiệp (`/profile`):**
-  * Trang hồ sơ freelancer cá nhân (`@phun4`) với ảnh bìa gradient, ảnh đại diện có chấm xanh online, thống kê thu nhập, số dự án hoàn thành và tỷ lệ hoàn thành 100%.
-  * Giới thiệu bản thân, kỹ năng đã xác minh (Verified Skills) và đánh giá sao từ khách hàng quốc tế.
-* **Quy trình Onboarding 11 bước (`/onboarding`):**
-  * Lộ trình từng bước giúp freelancer mới gia nhập nền tảng: Thiết lập mức giá theo giờ, thời gian làm việc trong tuần, xác minh danh tính KYC và kích hoạt tài khoản.
-
-### 🏢 2. Dành cho Khách hàng / Doanh nghiệp (Người thuê)
-* **Đăng tin tuyển dụng Wizard 4 bước (`/post-project`):**
-  * Bước 1: Tiêu đề công việc và mô tả chi tiết yêu cầu.
-  * Bước 2: Tải lên tài liệu đính kèm và chọn thẻ kỹ năng cần thiết.
-  * Bước 3: Lựa chọn phương thức thanh toán (Giá cố định vs Theo giờ) và dự toán ngân sách.
-  * Bước 4: Xem trước và xuất bản dự án nhận chào giá ngay lập tức.
-* **Danh mục tìm & thuê Freelancer (`/hire`):**
-  * Danh bạ các chuyên gia hàng đầu được xếp hạng theo đánh giá sao (⭐ 4.8 - 5.0), tỷ lệ hoàn thành công việc và mức giá theo giờ.
-  * Hỗ trợ gửi tin nhắn trực tiếp hoặc bấm "Thuê ngay".
-
-### 🔑 3. Hệ thống Định danh & Phân quyền
-* **Đăng nhập (`/login`):** Hỗ trợ đăng nhập nhanh bằng Google, Facebook hoặc Email/Username.
-* **Đăng ký (`/signup`):** Bộ chọn vai trò kép (*Tôi muốn làm việc* vs *Tôi muốn thuê*).
+Ứng dụng web nền tảng kết nối doanh nghiệp công nghệ với các kỹ sư phần mềm, chuyên gia UI/UX và dữ liệu tại Việt Nam. Được xây dựng bằng **React 18**, **Tailwind CSS 3**, **React Router v6** và **Vite 5** theo phong cách **Obsidian Dark Tech** hiện đại, quản lý toàn bộ luồng nghiệp vụ tương tác trực tiếp trên bộ nhớ (in-memory state).
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng (Tech Stack)
+## Tính năng chính
 
-* **Framework:** React 18 (SPA)
-* **Build Tool:** Vite 5 (Khởi động cực nhanh, HMR tức thì)
-* **Styling:** Tailwind CSS 3 (Cấu hình màu thương hiệu chuẩn Freelancer)
-* **Routing:** React Router DOM v6
-* **Typography:** Inter Font (Google Fonts)
-* **Design System:** Đồng bộ theo bản thiết kế chuẩn [Figma Freelancer VN Light Theme](https://www.figma.com/design/d7deNARI1VR1Ck42stBCMH/Untitled)
+### 1. Dành cho Người tìm việc (Freelancer)
+* **Đăng ký người tìm việc 4 bước (`/signup?role=freelancer`, `/register-freelancer`)**:
+  * **Bước 1 (Tài khoản)**: Chọn vai trò, đăng ký nhanh mẫu (Google/GitHub) hoặc bằng email kèm thanh đo độ mạnh mật khẩu và xác nhận Điều khoản sử dụng.
+  * **Bước 2 (Tên người dùng `@username`)**: Kiểm tra hợp lệ và kiểm tra trùng theo thời gian thực với danh bạ hiện có, tự động gợi ý các `@username` khả dụng.
+  * **Bước 3 (Kỹ năng tìm việc 2 cột)**: Duyệt kỹ năng theo 6 lĩnh vực chuyên môn, tìm kiếm/thêm kỹ năng tự do (tối đa 20 kỹ năng) và đếm số dự án đang mở khớp với bộ kỹ năng vừa chọn.
+  * **Bước 4 (Xác thực Email OTP & Mức giá)**: Xác thực mã 6 chữ số (có nút gửi lại mã), thiết lập mức giá theo giờ và đồng bộ hồ sơ ngay lập tức lên danh bạ chuyên gia.
+* **Tìm kiếm & Lọc dự án thời gian thực (`/jobs`)**:
+  * Lọc đồng thời theo từ khóa, lĩnh vực, hình thức thanh toán (Giá cố định / Theo giờ), ngưỡng ngân sách tối thiểu, kỹ năng, trạng thái xác minh thanh toán/Milestone và danh sách dự án đã lưu.
+  * Hỗ trợ sắp xếp (Mới nhất, Ngân sách cao/thấp, Ít chào giá nhất), bộ lọc dạng ngăn kéo (Drawer) trên di động và trạng thái trống (Empty State) kèm nút đặt lại nhanh.
+* **Chi tiết dự án & Đặt chào giá trực tiếp (`/projects/:id`)**:
+  * Định tuyến động theo mã dự án, hiển thị yêu cầu kỹ thuật, kỹ năng, tài liệu đính kèm và danh sách chào giá.
+  * Bảng tính chào giá trực tiếp tự động tính phí bảo vệ Milestone (10%) và số tiền thực nhận; gửi chào giá sẽ thêm ngay vào danh sách và cập nhật mức giá trung bình.
+* **Thiết lập hồ sơ chuyên gia 5 bước (`/onboarding`)**:
+  * Di chuyển linh hoạt giữa 5 bước (Chuyên môn → Kỹ năng → Mức giá & ước tính thu nhập tháng → Giới thiệu → Hoàn tất) và đồng bộ trực tiếp sang trang hồ sơ công khai.
+
+### 2. Dành cho Doanh nghiệp / Khách hàng
+* **Đăng dự án Wizard 4 bước (`/post-project`)**:
+  * Bước 1: Tiêu đề, lĩnh vực, mô tả chi tiết (có nút điền nhanh dữ liệu mẫu và kiểm tra hợp lệ).
+  * Bước 2: Quản lý thẻ kỹ năng yêu cầu (chọn gợi ý, thêm kỹ năng tùy chỉnh, xóa từng kỹ năng).
+  * Bước 3: Chọn Giá cố định hoặc Theo giờ, nhập khoảng ngân sách, thời gian triển khai, địa điểm và cam kết Milestone.
+  * Bước 4: Xem trước thẻ dự án và xuất bản ngay lên đầu danh sách `/jobs`.
+* **Danh bạ Chuyên gia & Hồ sơ động (`/hire`, `/freelancers/:id`)**:
+  * Tìm kiếm và lọc chuyên gia theo nhóm chuyên môn và trạng thái sẵn sàng nhận việc.
+  * Xem hồ sơ riêng từng chuyên gia gồm số liệu công việc, dự án tiêu biểu (Portfolio) và đánh giá từ khách hàng.
+  * Mở **Modal Nhắn tin trực tiếp** hoặc **Modal Mời nhận việc** (chọn dự án cụ thể và đề xuất ngân sách) thay thế hoàn toàn `window.alert()`.
+
+### 3. Trải nghiệm giao diện & Tiện ích chung
+* **Responsive hoàn chỉnh**: Thanh điều hướng 3 vùng gọn gàng kèm Mobile Slide-Over Drawer trên màn hình `< 1024px`.
+* **Chuyển đổi tiền tệ trực tiếp**: Nút chuyển đổi `VNĐ ↔ USD` ở chân trang tự động quy đổi toàn bộ giá dự án, chào giá và mức giá theo giờ trên toàn ứng dụng.
+* **Hệ thống thông báo Toast & Modal toàn cục**: Mọi thao tác đều có phản hồi trực quan không chặn luồng tương tác, tự động cuộn lên đầu trang khi chuyển route và có trang `404` riêng.
 
 ---
 
-## 🎨 Bảng Màu & Design Tokens
+## Công nghệ sử dụng
 
-| Thành phần | Mã màu HEX | Mô tả |
-| :--- | :--- | :--- |
-| **Nền trang (Canvas)** | `#f8f9fa` | Nền sáng thanh lịch, dịu mắt |
-| **Thẻ & Bề mặt (Cards)** | `#ffffff` | Nền trắng tinh khiết đổ bóng mềm |
-| **Chữ tiêu đề (Headings)** | `#151d2a` | Xanh đen Navy trầm hiện đại |
-| **Thân chữ (Body text)** | `#475569` | Xám Slate mềm mại, dễ đọc |
-| **Nút hành động chính (Primary CTA)** | `#e60278` | Hồng Freelancer đặc trưng (`hover: #c70066`) |
-| **Điểm nhấn & Liên kết (Secondary)** | `#007fed` | Xanh dương năng động (`hover: #0067c2`) |
-| **Giá tiền & Ngân sách (Price Tag)** | `#059669` | Xanh ngọc lục bảo nổi bật |
+* **Framework**: React 18 (Functional Components & Hooks)
+* **Routing**: React Router DOM v6 (Dynamic Routes & Query Params)
+* **Styling**: Tailwind CSS 3 (Custom Obsidian Dark Tech Tokens)
+* **Icons**: `lucide-react` (100% vector icon, không dùng emoji)
+* **Build Tool**: Vite 5 (cổng phát triển `3000`)
+* **Typography**: `Plus Jakarta Sans` (hiển thị & nội dung) kết hợp `JetBrains Mono` (`tabular-nums` cho toàn bộ số liệu và tiền tệ)
 
 ---
 
-## 📂 Cấu Trúc Thư Mục
+## Bảng màu & Design Tokens
+
+| Thành phần | Token Tailwind | Mã màu HEX | Mục đích sử dụng |
+| :--- | :--- | :--- | :--- |
+| **Nền trang chính** | `obsidian-950` | `#090C12` | Canvas nền tối dịu mắt |
+| **Bề mặt thẻ / Sidebar** | `obsidian-850` | `#111622` | Phân cấp nội dung với viền `1px` mờ |
+| **Bề mặt tương tác / Hover** | `obsidian-800` | `#161D2C` | Trạng thái hover cho thẻ & menu |
+| **Điểm nhấn chính (CTA)** | `cobalt-500` | `#3B82F6` | Nút hành động chính & trạng thái đang chọn |
+| **Xác minh & Ngân sách** | `semantic-emerald` | `#10B981` | Giá tiền, thực nhận, xác minh Milestone |
+| **Đánh giá sao / Cảnh báo** | `semantic-amber` | `#F59E0B` | Điểm đánh giá chuyên gia & độ mạnh mật khẩu |
+| **Thông báo lỗi** | `semantic-danger` | `#EF4444` | Validation form & cảnh báo thao tác |
+
+---
+
+## Cấu trúc thư mục
 
 ```text
 freelancer-vn/
-├── index.html                  # File HTML chính nhúng Google Font Inter
-├── package.json                # Cấu hình dependencies & scripts
-├── vite.config.js              # Cấu hình Vite dev server
-├── tailwind.config.js          # Khai báo màu sắc & shadow tokens
-├── postcss.config.js           # Plugin Tailwind & Autoprefixer
+├── index.html                        # HTML gốc, nhúng Plus Jakarta Sans & JetBrains Mono
+├── package.json                      # Dependencies và scripts npm
+├── vite.config.js                    # Cấu hình Vite dev server (port 3000)
+├── tailwind.config.js                # Khai báo bảng màu Obsidian / Cobalt & font chữ
+├── postcss.config.js                 # Cấu hình PostCSS & Autoprefixer
 ├── src/
-│   ├── main.jsx                # Entry point ứng dụng React
-│   ├── App.jsx                 # Cấu hình Router và khung Layout chung
-│   ├── index.css               # Import Tailwind và CSS tùy biến
+│   ├── main.jsx                      # Điểm khởi chạy React DOM
+│   ├── App.jsx                       # Cấu hình Router động, Layout chung & Provider
+│   ├── index.css                     # Biến CSS nền tối, scrollbar & focus-visible
+│   ├── assets/images/                # Ảnh studio Hero và ảnh chân dung chuyên gia
+│   ├── data/
+│   │   └── mockData.js               # Dữ liệu mẫu tập trung (dự án, chuyên gia, danh mục)
+│   ├── context/
+│   │   └── MarketplaceContext.jsx    # Quản lý state tập trung trong bộ nhớ (auth, bids, modals, toast)
 │   ├── components/
-│   │   ├── Navbar.jsx          # Thanh điều hướng có nhận diện trang hiện tại
-│   │   └── Footer.jsx          # Chân trang Dark Navy chuẩn đa cột
+│   │   ├── Avatar.jsx                # Ảnh đại diện có dự phòng ký tự đầu khi ảnh lỗi
+│   │   ├── Navbar.jsx                # Thanh điều hướng 3 vùng + Mobile Drawer
+│   │   ├── Footer.jsx                # Chân trang kèm nút đổi tiền tệ VNĐ/USD
+│   │   ├── GlobalOverlays.jsx        # Hệ thống Toast, Modal Nhắn tin & Modal Mời việc
+│   │   └── ScrollToTop.jsx           # Tự động cuộn đầu trang khi đổi route
 │   └── pages/
-│       ├── Home.jsx            # Trang chủ
-│       ├── Jobs.jsx            # Tìm kiếm việc làm & Bộ lọc
-│       ├── ProjectDetail.jsx   # Chi tiết dự án & Bảng tính Bidding
-│       ├── PostProject.jsx     # Wizard 4 bước đăng tin dự án
-│       ├── Hire.jsx            # Danh bạ thuê freelancer
-│       ├── Profile.jsx         # Hồ sơ cá nhân freelancer @phun4
-│       ├── Onboarding.jsx      # Quy trình Onboarding 11 bước
-│       ├── Login.jsx           # Trang Đăng nhập
-│       └── Signup.jsx          # Trang Đăng ký (Dual Persona)
-└── README.md                   # Hướng dẫn cài đặt & vận hành
+│       ├── Home.jsx                  # Trang chủ Hero bất đối xứng, KPI & dự án nổi bật
+│       ├── Jobs.jsx                  # Tìm việc & bộ lọc thời gian thực
+│       ├── ProjectDetail.jsx         # Chi tiết dự án & bảng tính đặt chào giá
+│       ├── PostProject.jsx           # Wizard 4 bước đăng dự án mới
+│       ├── Hire.jsx                  # Danh bạ & bộ lọc chuyên gia
+│       ├── Profile.jsx               # Hồ sơ chuyên gia động (Portfolio & đánh giá)
+│       ├── Onboarding.jsx            # Quy trình thiết lập hồ sơ 5 bước
+│       ├── Login.jsx                 # Đăng nhập tài khoản
+│       ├── Signup.jsx                # Đăng ký 4 bước cho Người tìm việc & Doanh nghiệp
+│       └── NotFound.jsx              # Trang 404 khi không tìm thấy tuyến đường
+└── README.md                         # Tài liệu dự án
 ```
 
 ---
 
-## ⚡ Hướng Dẫn Cài Đặt & Chạy Ứng Dụng
+## Cài đặt & Chạy dự án
 
-### 1. Yêu cầu hệ thống
-* **Node.js:** Phiên bản `18.x` hoặc mới hơn.
-* **npm:** Phiên bản `9.x` hoặc mới hơn.
+### Yêu cầu môi trường
+* Node.js `18.x` trở lên
+* npm `9.x` trở lên
 
-### 2. Cài đặt các gói phụ thuộc (Dependencies)
+### Các lệnh cơ bản
 ```bash
-# Clone dự án về máy
-git clone https://github.com/Khai-1711/freelancer-vn.git
-cd freelancer-vn
-
 # Cài đặt thư viện
 npm install
-```
 
-### 3. Chạy môi trường phát triển (Development Server)
-```bash
+# Khởi chạy môi trường phát triển tại http://localhost:3000
 npm run dev
-```
-Sau khi chạy lệnh, truy cập trình duyệt tại địa chỉ: **[http://localhost:5173/](http://localhost:5173/)**
 
-### 4. Build bản Production đóng gói
-```bash
+# Đóng gói bản production vào thư mục dist/
 npm run build
-```
-Mã nguồn sau khi tối ưu hóa (minify & chunking) sẽ nằm trong thư mục `dist/`.
 
-Để kiểm tra thử bản build production ngay trên máy:
-```bash
+# Xem trước bản build production
 npm run preview
 ```
 
 ---
 
-## 🗺️ Danh Sách Đường Dẫn (Routes Map)
+## Bản đồ đường dẫn (Routes)
 
-| Đường dẫn (URL) | Trang giao diện | Chức năng |
+| Đường dẫn | Trang | Mô tả |
 | :--- | :--- | :--- |
-| `/` | **Trang chủ** | Giới thiệu nền tảng, danh mục công việc, đối tác & dự án mới |
-| `/jobs` | **Tìm việc làm** | Duyệt danh sách dự án với bộ lọc kỹ năng, ngân sách, phân loại |
-| `/project-detail` | **Chi tiết dự án** | Đọc mô tả công việc, tài liệu và đặt giá thầu (Live Bid Calculator) |
-| `/post-project` | **Đăng dự án** | Wizard 4 bước đăng tin tuyển dụng dành cho khách hàng |
-| `/hire` | **Thuê Freelancer** | Danh bạ chuyên gia hàng đầu được xếp hạng theo đánh giá sao |
-| `/profile` | **Hồ sơ Freelancer** | Xem hồ sơ năng lực, bằng cấp, portfolio của freelancer mẫu `@phun4` |
-| `/onboarding` | **Onboarding** | Lộ trình 11 bước thiết lập hồ sơ cho freelancer mới |
-| `/login` | **Đăng nhập** | Form đăng nhập tập trung hỗ trợ tài khoản & mạng xã hội |
-| `/signup` | **Đăng ký** | Đăng ký tài khoản nhanh với bộ chọn vai trò Người thuê / Freelancer |
-
----
-
-## 📄 Bản Quyền & Giấy Phép
-Dự án được xây dựng phục vụ mục đích nghiên cứu và phát triển phần mềm giao diện. Bản quyền logo và nhãn hiệu thuộc về Freelancer Technology Pty Limited.
+| `/` | Trang chủ | Giới thiệu ViecTech, danh mục kỹ năng, dự án mới đăng và chuyên gia tiêu biểu |
+| `/jobs` | Tìm việc làm | Lọc & sắp xếp dự án theo thời gian thực (hỗ trợ query `?category=`, `?skill=`) |
+| `/projects/:id` | Chi tiết dự án | Xem yêu cầu kỹ thuật, danh sách chào giá và gửi đề xuất chào giá mới |
+| `/post-project` | Đăng dự án | Quy trình 4 bước xuất bản dự án mới trực tiếp lên sàn |
+| `/hire` | Chuyên gia | Tìm kiếm, lọc chuyên gia và mở modal nhắn tin / mời nhận việc |
+| `/freelancers/:id` | Hồ sơ chuyên gia | Hồ sơ năng lực chi tiết, dự án đã làm và đánh giá từ doanh nghiệp |
+| `/onboarding` | Thiết lập hồ sơ | Quy trình 5 bước cập nhật kỹ năng, mức giá và giới thiệu bản thân |
+| `/signup` | Đăng ký | Luồng đăng ký 4 bước cho Người tìm việc (`?role=freelancer`) và Doanh nghiệp (`?role=client`) |
+| `/register-freelancer` | Đăng ký tìm việc | Đường dẫn trực tiếp tới luồng đăng ký dành cho người tìm việc |
+| `/login` | Đăng nhập | Đăng nhập phiên làm việc và cập nhật trạng thái tài khoản trên Navbar |

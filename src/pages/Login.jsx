@@ -1,57 +1,113 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { useMarketplace } from '../context/MarketplaceContext';
 
+/**
+ * Trang Đăng nhập (/login):
+ * Kiểm tra định dạng email/mật khẩu inline, hỗ trợ ẩn/hiện mật khẩu
+ * và cập nhật ngay phiên tài khoản trên thanh Navbar.
+ */
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useMarketplace();
+
+  const [email, setEmail] = useState('phun4@viectech.vn');
+  const [password, setPassword] = useState('viectech2026');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email.trim().includes('@')) {
+      setError('Vui lòng nhập địa chỉ email hợp lệ.');
+      return;
+    }
+    if (password.length < 6) {
+      setError('Mật khẩu cần tối thiểu 6 ký tự.');
+      return;
+    }
+    setError('');
+    login({
+      email: email.trim(),
+      name: email.trim().toLowerCase().startsWith('phun4') ? 'Phú Nguyễn' : undefined,
+      role: 'freelancer',
+    });
+    navigate('/jobs');
+  };
 
   return (
-    <div className="flex-1 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl p-8 sm:p-10 shadow-card space-y-6">
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-black text-[#151d2a]">Chào mừng trở lại</h1>
-          <p className="text-xs text-slate-500">Đăng nhập để quản lý công việc và dự án của bạn.</p>
+    <div className="min-h-[calc(100vh-14rem)] flex items-center justify-center px-4 py-14">
+      <div className="w-full max-w-md p-8 rounded-2xl bg-obsidian-850 border border-white/[0.08] space-y-6">
+        <div className="space-y-1.5">
+          <h1 className="text-2xl font-extrabold tracking-tight text-slate-50">
+            Đăng nhập ViecTech
+          </h1>
+          <p className="text-sm text-slate-400">
+            Truy cập danh sách dự án đã lưu, gửi chào giá và quản lý hồ sơ của bạn.
+          </p>
         </div>
 
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          alert('Đăng nhập thành công!');
-          navigate('/');
-        }} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1">Email hoặc Tên người dùng</label>
-            <input 
-              type="text" 
-              required 
-              defaultValue="phun4@example.com"
-              className="w-full text-xs bg-[#f8f9fa] border border-slate-300 rounded-lg p-3 outline-none focus:border-[#007fed] focus:bg-white font-medium transition" 
+            <label htmlFor="login-email" className="block text-xs font-semibold text-slate-300 mb-1.5">
+              Địa chỉ email
+            </label>
+            <input
+              id="login-email"
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (error) setError('');
+              }}
+              placeholder="ban@congty.vn"
+              className="w-full rounded-lg bg-obsidian-950 border border-white/10 focus:border-cobalt-500 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none"
             />
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="block text-xs font-bold text-slate-700">Mật khẩu</label>
-              <a href="#" className="text-[11px] font-semibold text-[#007fed] hover:underline">Quên mật khẩu?</a>
+            <label htmlFor="login-password" className="block text-xs font-semibold text-slate-300 mb-1.5">
+              Mật khẩu
+            </label>
+            <div className="relative">
+              <input
+                id="login-password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (error) setError('');
+                }}
+                placeholder="Nhập mật khẩu"
+                className="w-full rounded-lg bg-obsidian-950 border border-white/10 focus:border-cobalt-500 pl-4 pr-11 py-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((s) => !s)}
+                aria-label={showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-200"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
-            <input 
-              type="password" 
-              required 
-              defaultValue="password123"
-              className="w-full text-xs bg-[#f8f9fa] border border-slate-300 rounded-lg p-3 outline-none focus:border-[#007fed] focus:bg-white font-medium transition" 
-            />
           </div>
 
-          <button 
-            type="submit" 
-            className="w-full py-3 bg-[#e60278] hover:bg-[#c70066] text-white text-sm font-bold rounded-xl shadow-sm hover:shadow transition"
+          {error && <p className="text-xs text-semantic-danger">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-sm font-semibold transition-colors"
           >
-            Đăng nhập vào tài khoản
+            Đăng nhập
+            <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 
-        <div className="text-center text-xs text-slate-500 pt-2">
+        <div className="pt-4 border-t border-white/[0.06] text-center text-sm text-slate-400">
           Chưa có tài khoản?{' '}
-          <Link to="/signup" className="text-[#e60278] font-bold hover:underline">
-            Đăng ký ngay
+          <Link to="/signup" className="text-cobalt-400 font-semibold hover:text-cobalt-300">
+            Đăng ký miễn phí
           </Link>
         </div>
       </div>

@@ -1,230 +1,549 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import {
+  Search,
+  SlidersHorizontal,
+  X,
+  Bookmark,
+  ShieldCheck,
+  Star,
+  MapPin,
+  MessageSquare,
+  RotateCcw,
+  ArrowUpRight,
+} from 'lucide-react';
+import { CATEGORIES, POPULAR_SKILLS } from '../data/mockData';
+import { useMarketplace } from '../context/MarketplaceContext';
 
+const DEFAULT_FILTERS = {
+  category: 'all',
+  types: ['fixed', 'hourly'],
+  minBudget: 0,
+  skills: [],
+  verifiedOnly: false,
+  milestoneOnly: false,
+  savedOnly: false,
+};
+
+/**
+ * Trang Tìm việc làm (/jobs):
+ * Hỗ trợ tìm kiếm từ khóa, lọc đồng thời theo danh mục, hình thức thanh toán,
+ * ngưỡng ngân sách tối thiểu, kỹ năng, trạng thái xác minh, dự án đã lưu và sắp xếp.
+ */
 export default function Jobs() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { projects, savedJobIds, toggleSaveJob, formatBudgetRange, formatMoney } = useMarketplace();
 
-  const jobListings = [
-    {
-      id: 1,
-      badge: 'Nổi bật',
-      badgeColor: 'bg-pink-50 text-[#e60278] border-pink-200',
-      time: 'Đăng 35 phút trước',
-      title: 'Xây dựng Hệ thống Bán vé Trực tuyến & Cổng Thanh toán VNPay',
-      budget: '25.000.000 - 35.000.000 VNĐ',
-      type: 'Giá cố định • Dự kiến 30 ngày',
-      desc: 'Chúng tôi đang cần một lập trình viên Fullstack (ưu tiên Next.js, Node.js, PostgreSQL) để phát triển phân hệ bán vé điện tử có sơ đồ chọn chỗ ngồi trực quan, quét mã QR check-in tại quầy và tích hợp cổng thanh toán VNPay / MoMo...',
-      skills: ['Next.js', 'Node.js', 'PostgreSQL', 'VNPay API', 'Tailwind CSS'],
-      verified: 'Đã xác minh thanh toán',
-      rating: '⭐ 4.9 (18 đánh giá)',
-      location: '📍 Hà Nội, Việt Nam',
-      bids: '💬 12 chào giá',
-    },
-    {
-      id: 2,
-      badge: 'Theo giờ',
-      badgeColor: 'bg-blue-50 text-[#007fed] border-blue-200',
-      time: 'Đăng 1 giờ trước',
-      title: 'Thiết kế UI/UX Trọn Bộ Ứng Dụng Tài Chính Fintech trên Figma',
-      budget: '450.000 - 700.000 VNĐ / giờ',
-      type: 'Dự án dài hạn • 20 giờ/tuần',
-      desc: 'Tìm UI/UX Designer có kinh nghiệm chuyên sâu về Design System, Auto-layout và Responsive Design trong Figma. Cần dựng wireframe và bản thiết kế hoàn chỉnh cho 25+ màn hình Mobile App & Web Dashboard...',
-      skills: ['Figma', 'UI/UX Design', 'Design System', 'Mobile App'],
-      verified: 'Đã nạp cọc 100%',
-      rating: '⭐ 5.0 (42 đánh giá)',
-      location: '📍 TP. Hồ Chí Minh',
-      bids: '💬 8 chào giá',
-    },
-    {
-      id: 3,
-      badge: 'Mới đăng',
-      badgeColor: 'bg-emerald-50 text-[#059669] border-emerald-200',
-      time: 'Đăng 3 giờ trước',
-      title: 'Viết Tool Cào Dữ Liệu Bất Động Sản Bằng Python & Xuất Excel Realtime',
-      budget: '8.000.000 VNĐ',
-      type: 'Giá cố định • Dự kiến 7 ngày',
-      desc: 'Yêu cầu code script Python sử dụng Playwright / Scrapy để cào danh sách tin đăng, số điện thoại, giá và diện tích từ 3 website bất động sản lớn tại VN. Dữ liệu làm sạch và lưu tự động vào Google Sheets / PostgreSQL.',
-      skills: ['Python', 'Web Scraping', 'Playwright', 'PostgreSQL'],
-      verified: 'Đã xác minh thanh toán',
-      rating: '⭐ 4.8 (9 đánh giá)',
-      location: '📍 Đà Nẵng',
-      bids: '💬 21 chào giá',
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
+  const [category, setCategory] = useState(searchParams.get('category') || 'all');
+  const [selectedTypes, setSelectedTypes] = useState(DEFAULT_FILTERS.types);
+  const [minBudget, setMinBudget] = useState(0);
+  const [selectedSkills, setSelectedSkills] = useState(() => {
+    const skillParam = searchParams.get('skill');
+    return skillParam ? [skillParam] : [];
+  });
+  const [verifiedOnly, setVerifiedOnly] = useState(false);
+  const [milestoneOnly, setMilestoneOnly] = useState(false);
+  const [savedOnly, setSavedOnly] = useState(false);
+  const [sortBy, setSortBy] = useState('newest');
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+
+  useEffect(() => {
+    const paramCat = searchParams.get('category');
+    const paramSkill = searchParams.get('skill');
+    if (paramCat) setCategory(paramCat);
+    if (paramSkill) setSelectedSkills([paramSkill]);
+  }, [searchParams]);
+
+  const toggleType = (type) => {
+    setSelectedTypes((prev) =>
+      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+    );
+  };
+
+  const toggleSkill = (skill) => {
+    setSelectedSkills((prev) =>
+      prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]
+    );
+  };
+
+  const handleReset = () => {
+    setSearchTerm('');
+    setCategory('all');
+    setSelectedTypes(DEFAULT_FILTERS.types);
+    setMinBudget(0);
+    setSelectedSkills([]);
+    setVerifiedOnly(false);
+    setMilestoneOnly(false);
+    setSavedOnly(false);
+    setSortBy('newest');
+    setSearchParams({});
+  };
+
+  const activeFilterCount =
+    (category !== 'all' ? 1 : 0) +
+    (selectedTypes.length < 2 ? 1 : 0) +
+    (minBudget > 0 ? 1 : 0) +
+    selectedSkills.length +
+    (verifiedOnly ? 1 : 0) +
+    (milestoneOnly ? 1 : 0) +
+    (savedOnly ? 1 : 0);
+
+  const filteredProjects = useMemo(() => {
+    const q = searchTerm.trim().toLowerCase();
+
+    const list = projects.filter((job) => {
+      if (category !== 'all' && job.category !== category) return false;
+      if (selectedTypes.length > 0 && !selectedTypes.includes(job.budgetType)) return false;
+      if (minBudget > 0 && job.maxBudget < minBudget) return false;
+      if (verifiedOnly && !job.paymentVerified) return false;
+      if (milestoneOnly && !job.milestoneFunded) return false;
+      if (savedOnly && !savedJobIds.includes(job.id)) return false;
+
+      if (selectedSkills.length > 0) {
+        const jobSkillsLower = job.skills.map((s) => s.toLowerCase());
+        const hasMatch = selectedSkills.some((sk) => jobSkillsLower.includes(sk.toLowerCase()));
+        if (!hasMatch) return false;
+      }
+
+      if (q) {
+        const haystack = [
+          job.title,
+          job.description,
+          job.categoryLabel,
+          job.location,
+          job.clientName,
+          ...job.skills,
+        ]
+          .join(' ')
+          .toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+
+      return true;
+    });
+
+    const sorted = [...list];
+    if (sortBy === 'newest') {
+      sorted.sort((a, b) => a.postedMinutesAgo - b.postedMinutesAgo);
+    } else if (sortBy === 'budget-desc') {
+      sorted.sort((a, b) => b.maxBudget - a.maxBudget);
+    } else if (sortBy === 'budget-asc') {
+      sorted.sort((a, b) => a.minBudget - b.minBudget);
+    } else if (sortBy === 'bids-asc') {
+      sorted.sort((a, b) => a.bids.length - b.bids.length);
     }
-  ];
+    return sorted;
+  }, [
+    projects,
+    searchTerm,
+    category,
+    selectedTypes,
+    minBudget,
+    selectedSkills,
+    verifiedOnly,
+    milestoneOnly,
+    savedOnly,
+    savedJobIds,
+    sortBy,
+  ]);
+
+  const filterPanelContent = (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+        <h2 className="text-sm font-bold text-slate-100">Bộ lọc tìm kiếm</h2>
+        {activeFilterCount > 0 && (
+          <button
+            type="button"
+            onClick={handleReset}
+            className="inline-flex items-center gap-1 text-xs font-medium text-cobalt-400 hover:text-cobalt-300 transition-colors"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            Đặt lại ({activeFilterCount})
+          </button>
+        )}
+      </div>
+
+      {/* Category Select */}
+      <div className="space-y-2.5">
+        <label htmlFor="filter-category" className="block text-xs font-semibold text-slate-400">
+          Danh mục chuyên môn
+        </label>
+        <select
+          id="filter-category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full rounded-lg bg-obsidian-950 border border-white/10 focus:border-cobalt-500 px-3 py-2.5 text-sm text-slate-100 outline-none"
+        >
+          <option value="all">Tất cả lĩnh vực</option>
+          {CATEGORIES.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.title}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Project Type */}
+      <div className="space-y-2.5">
+        <p className="text-xs font-semibold text-slate-400">Hình thức thanh toán</p>
+        <div className="space-y-2">
+          {[
+            { id: 'fixed', label: 'Giá cố định (Fixed Price)' },
+            { id: 'hourly', label: 'Tính theo giờ (Hourly)' },
+          ].map((item) => (
+            <label key={item.id} className="flex items-center gap-2.5 cursor-pointer py-1 text-sm text-slate-300 hover:text-white">
+              <input
+                type="checkbox"
+                checked={selectedTypes.includes(item.id)}
+                onChange={() => toggleType(item.id)}
+                className="w-4 h-4 rounded border-white/20 bg-obsidian-950 accent-cobalt-500"
+              />
+              <span>{item.label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Minimum Budget Slider */}
+      <div className="space-y-2.5">
+        <div className="flex items-center justify-between text-xs">
+          <span className="font-semibold text-slate-400">Ngân sách tối thiểu</span>
+          <span className="text-slate-200 font-semibold tabular-nums-mono">
+            {minBudget === 0 ? 'Bất kỳ' : formatMoney(minBudget, { compact: true })}
+          </span>
+        </div>
+        <input
+          type="range"
+          min={0}
+          max={40000000}
+          step={2000000}
+          value={minBudget}
+          onChange={(e) => setMinBudget(Number(e.target.value))}
+          className="w-full accent-cobalt-500 cursor-pointer"
+          aria-label="Ngân sách tối thiểu"
+        />
+        <div className="flex justify-between text-xs text-slate-500 tabular-nums-mono">
+          <span>0</span>
+          <span>20M</span>
+          <span>40M VNĐ</span>
+        </div>
+      </div>
+
+      {/* Skills Interactive Buttons */}
+      <div className="space-y-2.5">
+        <p className="text-xs font-semibold text-slate-400">Lọc theo kỹ năng</p>
+        <div className="flex flex-wrap gap-1.5">
+          {POPULAR_SKILLS.slice(0, 10).map((skill) => {
+            const active = selectedSkills.includes(skill);
+            return (
+              <button
+                key={skill}
+                type="button"
+                onClick={() => toggleSkill(skill)}
+                className={`px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors whitespace-nowrap ${
+                  active
+                    ? 'bg-cobalt-500 text-white'
+                    : 'bg-obsidian-950 text-slate-300 border border-white/[0.08] hover:border-white/20 hover:text-white'
+                }`}
+              >
+                {skill}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Trust & Saved Filters */}
+      <div className="space-y-2.5 pt-2 border-t border-white/[0.06]">
+        <p className="text-xs font-semibold text-slate-400">Tiêu chí xác minh</p>
+        <label className="flex items-center gap-2.5 cursor-pointer py-1 text-sm text-slate-300 hover:text-white">
+          <input
+            type="checkbox"
+            checked={verifiedOnly}
+            onChange={(e) => setVerifiedOnly(e.target.checked)}
+            className="w-4 h-4 rounded border-white/20 bg-obsidian-950 accent-cobalt-500"
+          />
+          <span>Đã xác minh thanh toán</span>
+        </label>
+        <label className="flex items-center gap-2.5 cursor-pointer py-1 text-sm text-slate-300 hover:text-white">
+          <input
+            type="checkbox"
+            checked={milestoneOnly}
+            onChange={(e) => setMilestoneOnly(e.target.checked)}
+            className="w-4 h-4 rounded border-white/20 bg-obsidian-950 accent-cobalt-500"
+          />
+          <span>Đã nạp cọc Milestone</span>
+        </label>
+        <label className="flex items-center gap-2.5 cursor-pointer py-1 text-sm text-slate-300 hover:text-white">
+          <input
+            type="checkbox"
+            checked={savedOnly}
+            onChange={(e) => setSavedOnly(e.target.checked)}
+            className="w-4 h-4 rounded border-white/20 bg-obsidian-950 accent-cobalt-500"
+          />
+          <span>Dự án đã lưu ({savedJobIds.length})</span>
+        </label>
+      </div>
+    </div>
+  );
 
   return (
     <div>
-      {/* Page Breadcrumb & Header */}
-      <div className="bg-white border-b border-slate-200 py-6">
+      {/* Header & Live Search */}
+      <div className="bg-obsidian-900/60 border-b border-white/[0.08] py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <nav className="flex text-xs text-slate-500 mb-1 space-x-2">
-                <Link to="/" className="hover:text-slate-800">Trang chủ</Link>
-                <span>/</span>
-                <span className="text-slate-800 font-medium">Tìm việc làm</span>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="space-y-2">
+              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-400">
+                <Link to="/" className="hover:text-slate-200 transition-colors">
+                  Trang chủ
+                </Link>
+                <span aria-hidden="true">/</span>
+                <span className="text-slate-200 font-medium">Tìm việc làm</span>
               </nav>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#151d2a]">Tìm Việc Làm & Dự Án Đang Mở</h1>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1">Duyệt qua hàng ngàn dự án freelance mới nhất từ các nhà tuyển dụng tại Việt Nam và toàn cầu.</p>
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+                Dự án công nghệ đang tuyển
+              </h1>
+              <p className="text-sm text-slate-400 max-w-2xl">
+                Lọc trực tiếp theo lĩnh vực, kỹ năng, ngân sách và đặt chào giá ngay trên hệ thống.
+              </p>
             </div>
 
-            <div className="w-full md:w-96">
-              <div className="relative">
-                <input 
-                  type="text" 
+            <div className="w-full lg:w-[420px] flex items-center gap-2.5">
+              <div className="relative flex-1">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Tìm theo từ khóa (vd: React, Figma, Python...)" 
-                  className="w-full bg-[#f8f9fa] border border-slate-300 focus:border-[#007fed] focus:bg-white text-xs sm:text-sm rounded-lg pl-10 pr-4 py-2.5 outline-none transition"
+                  placeholder="Tìm theo từ khóa (Next.js, Figma, Python...)"
+                  aria-label="Tìm kiếm dự án"
+                  className="w-full rounded-lg bg-obsidian-950 border border-white/10 focus:border-cobalt-500 pl-10 pr-9 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 outline-none transition-colors"
                 />
-                <span className="absolute left-3.5 top-3 text-slate-400">🔍</span>
+                {searchTerm && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-white"
+                    aria-label="Xóa từ khóa tìm kiếm"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
               </div>
+
+              <button
+                type="button"
+                onClick={() => setMobileFilterOpen(true)}
+                className="lg:hidden inline-flex items-center gap-2 px-4 min-h-[44px] rounded-lg bg-obsidian-850 border border-white/10 text-sm font-medium text-slate-200 hover:bg-obsidian-800 whitespace-nowrap shrink-0"
+              >
+                <SlidersHorizontal className="w-4 h-4" />
+                Lọc{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content Layout */}
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-          {/* Left Filter Sidebar */}
-          <aside className="lg:col-span-3 bg-white border border-slate-200 rounded-xl p-5 shadow-card space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200">
-              <h3 className="font-bold text-sm text-[#151d2a]">Bộ lọc tìm kiếm</h3>
-              <button className="text-xs text-[#007fed] hover:underline font-semibold">Đặt lại</button>
-            </div>
-
-            {/* Project Type */}
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Loại dự án</h4>
-              <div className="space-y-2 text-xs">
-                {['Giá cố định (Fixed Price)', 'Theo giờ (Hourly)', 'Cuộc thi thiết kế (Contests)'].map((t, idx) => (
-                  <label key={t} className="flex items-center space-x-2.5 cursor-pointer">
-                    <input type="checkbox" defaultChecked={idx < 2} className="rounded text-[#e60278] focus:ring-[#e60278]" />
-                    <span className="text-slate-700 font-medium">{t}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Budget Range */}
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Ngân sách (VNĐ)</h4>
-              <div className="grid grid-cols-2 gap-2 mb-3">
-                <div>
-                  <span className="text-[10px] text-slate-400 block mb-1">Tối thiểu</span>
-                  <input type="text" defaultValue="500.000" className="w-full text-xs bg-[#f8f9fa] border border-slate-300 rounded px-2.5 py-1.5 font-medium outline-none" />
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-400 block mb-1">Tối đa</span>
-                  <input type="text" defaultValue="50.000.000" className="w-full text-xs bg-[#f8f9fa] border border-slate-300 rounded px-2.5 py-1.5 font-medium outline-none" />
-                </div>
-              </div>
-              <input type="range" className="w-full accent-[#e60278]" />
-            </div>
-
-            {/* Skills Filter */}
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Kỹ năng phổ biến</h4>
-              <div className="space-y-2 text-xs">
-                {['JavaScript / React.js', 'Python / Django / FastAPI', 'Figma / UI/UX Design', 'Node.js / Express', 'Flutter / React Native'].map(skill => (
-                  <label key={skill} className="flex items-center space-x-2.5 cursor-pointer">
-                    <input type="checkbox" defaultChecked className="rounded text-[#e60278]" />
-                    <span className="text-slate-700">{skill}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Verification */}
-            <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Xác minh khách hàng</h4>
-              <div className="space-y-2 text-xs">
-                {['Đã xác minh thanh toán', 'Đã nạp cọc Milestone'].map((v, i) => (
-                  <label key={v} className="flex items-center space-x-2.5 cursor-pointer">
-                    <input type="checkbox" defaultChecked={i === 0} className="rounded text-[#e60278]" />
-                    <span className="text-slate-700">{v}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
+          {/* Desktop Sidebar */}
+          <aside className="hidden lg:block lg:col-span-3 sticky top-24 p-6 rounded-xl bg-obsidian-850 border border-white/[0.08]">
+            {filterPanelContent}
           </aside>
 
-          {/* Right Job Listings */}
-          <main className="lg:col-span-9 space-y-4">
-            <div className="bg-white border border-slate-200 rounded-xl px-5 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-card">
-              <div className="text-xs font-semibold text-slate-700">
-                Tìm thấy <span className="text-[#e60278] font-bold">1.482</span> dự án phù hợp
-              </div>
+          {/* Job List Area */}
+          <div className="lg:col-span-9 space-y-4">
+            {/* Results Toolbar */}
+            <div className="px-5 py-3.5 rounded-xl bg-obsidian-850 border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <p className="text-sm text-slate-300">
+                Hiển thị{' '}
+                <span className="font-bold text-slate-50 tabular-nums-mono">
+                  {filteredProjects.length}
+                </span>{' '}
+                / {projects.length} dự án phù hợp
+              </p>
 
-              <div className="flex items-center space-x-3 text-xs">
-                <span className="text-slate-500">Sắp xếp theo:</span>
-                <select className="bg-[#f8f9fa] border border-slate-300 rounded px-3 py-1.5 font-medium outline-none text-slate-700">
-                  <option>Mới đăng nhất</option>
-                  <option>Ngân sách cao nhất</option>
-                  <option>Ít lượt chào giá nhất</option>
-                  <option>Thời hạn gấp</option>
+              <div className="flex items-center gap-2.5 text-sm">
+                <label htmlFor="sort-jobs" className="text-xs text-slate-400 whitespace-nowrap">
+                  Sắp xếp:
+                </label>
+                <select
+                  id="sort-jobs"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="rounded-lg bg-obsidian-950 border border-white/10 focus:border-cobalt-500 px-3 py-1.5 text-xs font-medium text-slate-200 outline-none"
+                >
+                  <option value="newest">Mới đăng nhất</option>
+                  <option value="budget-desc">Ngân sách cao nhất</option>
+                  <option value="budget-asc">Ngân sách thấp nhất</option>
+                  <option value="bids-asc">Ít lượt chào giá nhất</option>
                 </select>
               </div>
             </div>
 
-            {jobListings.map(job => (
-              <div key={job.id} className="bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-6 shadow-card hover:shadow-card-hover transition card-transition space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                  <div className="space-y-1">
-                    <div className="flex items-center space-x-2">
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border uppercase ${job.badgeColor}`}>
-                        {job.badge}
-                      </span>
-                      <span className="text-xs text-slate-400">{job.time}</span>
-                    </div>
-                    <h3 className="text-lg font-bold text-[#151d2a] hover:text-[#e60278] transition">
-                      <Link to="/project-detail">{job.title}</Link>
-                    </h3>
-                  </div>
-
-                  <div className="text-left sm:text-right shrink-0">
-                    <div className="text-xl font-extrabold text-[#059669]">{job.budget}</div>
-                    <span className="text-[11px] text-slate-500 font-medium">{job.type}</span>
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {job.desc}
+            {/* Empty State */}
+            {filteredProjects.length === 0 ? (
+              <div className="p-12 rounded-xl bg-obsidian-850 border border-white/[0.08] text-center space-y-4">
+                <p className="text-lg font-bold text-slate-100">
+                  Không tìm thấy dự án phù hợp với bộ lọc hiện tại
                 </p>
-
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {job.skills.map(s => (
-                    <span key={s} className="text-xs bg-slate-100 text-slate-700 font-medium px-2.5 py-1 rounded-md">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-                  <div className="flex items-center space-x-4 text-slate-500">
-                    <span className="flex items-center space-x-1 text-emerald-600 font-medium">
-                      <span>✓</span>
-                      <span>{job.verified}</span>
-                    </span>
-                    <span>{job.rating}</span>
-                    <span>{job.location}</span>
-                    <span>{job.bids}</span>
-                  </div>
-
-                  <Link 
-                    to="/project-detail" 
-                    className="inline-flex items-center justify-center font-bold bg-[#e60278] hover:bg-[#c70066] text-white px-5 py-2 rounded-lg transition shadow-sm text-xs"
-                  >
-                    Đặt chào giá ngay
-                  </Link>
-                </div>
+                <p className="text-sm text-slate-400 max-w-md mx-auto">
+                  Hãy thử nới rộng ngưỡng ngân sách, đổi từ khóa tìm kiếm hoặc đặt lại toàn bộ bộ lọc để xem các dự án đang mở.
+                </p>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-sm font-semibold transition-colors"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  Đặt lại tất cả bộ lọc
+                </button>
               </div>
-            ))}
-          </main>
+            ) : (
+              filteredProjects.map((job) => {
+                const isSaved = savedJobIds.includes(job.id);
+                return (
+                  <article
+                    key={job.id}
+                    className="p-6 rounded-xl bg-obsidian-850 border border-white/[0.08] hover:border-white/[0.16] transition-colors space-y-4"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                      <div className="space-y-1.5 min-w-0">
+                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400">
+                          <span className="text-cobalt-400 font-semibold">{job.categoryLabel}</span>
+                          <span aria-hidden="true">·</span>
+                          <span>{job.budgetType === 'fixed' ? 'Giá cố định' : 'Theo giờ'}</span>
+                          <span aria-hidden="true">·</span>
+                          <span>{job.postedAt}</span>
+                        </div>
+                        <h2 className="text-lg sm:text-xl font-bold text-slate-50 leading-snug">
+                          <Link
+                            to={`/projects/${job.id}`}
+                            className="hover:text-cobalt-400 transition-colors"
+                          >
+                            {job.title}
+                          </Link>
+                        </h2>
+                      </div>
+
+                      <div className="sm:text-right shrink-0">
+                        <div className="text-lg font-bold text-semantic-emerald tabular-nums-mono">
+                          {formatBudgetRange(job, { compact: true })}
+                        </div>
+                        <p className="text-xs text-slate-400 mt-0.5">{job.durationLabel}</p>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-slate-300 leading-relaxed">{job.description}</p>
+
+                    {/* Clean unboxed skill links */}
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-400 pt-1">
+                      {job.skills.map((skill, idx) => (
+                        <React.Fragment key={skill}>
+                          <button
+                            type="button"
+                            onClick={() => toggleSkill(skill)}
+                            className={`transition-colors ${
+                              selectedSkills.includes(skill)
+                                ? 'text-cobalt-400 font-semibold'
+                                : 'text-slate-300 hover:text-white'
+                            }`}
+                          >
+                            {skill}
+                          </button>
+                          {idx < job.skills.length - 1 && (
+                            <span aria-hidden="true" className="text-slate-600">
+                              ·
+                            </span>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
+
+                    <div className="pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-400">
+                        {job.paymentVerified && (
+                          <span className="inline-flex items-center gap-1 text-semantic-emerald font-medium">
+                            <ShieldCheck className="w-3.5 h-3.5" />
+                            {job.milestoneFunded ? 'Đã nạp cọc Milestone' : 'Đã xác minh thanh toán'}
+                          </span>
+                        )}
+                        <span className="inline-flex items-center gap-1 text-slate-300 tabular-nums-mono">
+                          <Star className="w-3.5 h-3.5 text-semantic-amber fill-semantic-amber" />
+                          {job.clientRating.toFixed(1)} ({job.clientReviews})
+                        </span>
+                        <span className="inline-flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                          {job.location}
+                        </span>
+                        <span className="inline-flex items-center gap-1 tabular-nums-mono">
+                          <MessageSquare className="w-3.5 h-3.5 text-slate-500" />
+                          {job.bids.length} chào giá
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2.5 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => toggleSaveJob(job.id)}
+                          aria-label={isSaved ? 'Bỏ lưu dự án' : 'Lưu dự án'}
+                          className={`inline-flex items-center justify-center w-10 h-10 rounded-lg border transition-colors ${
+                            isSaved
+                              ? 'bg-cobalt-500/15 border-cobalt-500/40 text-cobalt-400'
+                              : 'bg-obsidian-900 border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+                          }`}
+                        >
+                          <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-cobalt-400' : ''}`} />
+                        </button>
+                        <Link
+                          to={`/projects/${job.id}`}
+                          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-xs font-semibold transition-colors whitespace-nowrap"
+                        >
+                          Xem &amp; Chào giá
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })
+            )}
+          </div>
         </div>
       </div>
+
+      {/* Mobile Filter Drawer */}
+      {mobileFilterOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Bộ lọc tìm kiếm">
+          <div className="fixed inset-0 bg-black/75" onClick={() => setMobileFilterOpen(false)} />
+          <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-obsidian-900 border-r border-white/10 p-6 overflow-y-auto flex flex-col justify-between gap-6">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-base font-bold text-slate-50">Bộ lọc dự án</span>
+                <button
+                  type="button"
+                  onClick={() => setMobileFilterOpen(false)}
+                  className="w-10 h-10 inline-flex items-center justify-center rounded-lg text-slate-400 hover:text-white"
+                  aria-label="Đóng bộ lọc"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              {filterPanelContent}
+            </div>
+            <button
+              type="button"
+              onClick={() => setMobileFilterOpen(false)}
+              className="w-full min-h-[44px] rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-sm font-semibold"
+            >
+              Xem {filteredProjects.length} dự án phù hợp
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

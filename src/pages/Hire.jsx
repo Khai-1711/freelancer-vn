@@ -1,103 +1,255 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Search,
+  Star,
+  MapPin,
+  ShieldCheck,
+  MessageSquare,
+  Briefcase,
+  RotateCcw,
+  X,
+} from 'lucide-react';
+import { useMarketplace } from '../context/MarketplaceContext';
+import Avatar from '../components/Avatar';
 
+const SPECIALIZATIONS = [
+  'Tất cả',
+  'Fullstack & Cloud',
+  'UI/UX Design',
+  'AI & Data',
+  'Mobile & DevOps',
+];
+
+/**
+ * Trang Danh bạ Chuyên gia (/hire):
+ * Cho phép lọc chuyên gia theo nhóm kỹ năng, từ khóa và trạng thái sẵn sàng nhận việc,
+ * đồng thời mở Modal nhắn tin hoặc mời hợp tác trực tiếp.
+ */
 export default function Hire() {
-  const freelancers = [
-    {
-      id: 1,
-      name: 'Phú Nguyễn (@phun4)',
-      role: 'Senior Fullstack Engineer & Cloud Architect',
-      rate: '550.000 VNĐ / giờ',
-      rating: '⭐ 5.0 (68 đánh giá)',
-      location: '📍 Đà Nẵng, Việt Nam',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&h=120&fit=crop',
-      bio: 'Hơn 7 năm kinh nghiệm xây dựng hệ thống web app quy mô lớn, backend FastAPI / Django, kiến trúc Microservices và ứng dụng React/Next.js tốc độ cao.',
-      skills: ['Python', 'FastAPI', 'React.js', 'Next.js', 'PostgreSQL', 'AWS'],
-    },
-    {
-      id: 2,
-      name: 'Lê Hoàng Nam (@namdesign)',
-      role: 'Lead Product Designer & Design System Specialist',
-      rate: '450.000 VNĐ / giờ',
-      rating: '⭐ 4.9 (94 đánh giá)',
-      location: '📍 TP. Hồ Chí Minh',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop',
-      bio: 'Chuyên gia thiết kế UI/UX trên Figma, xây dựng Design System từ số 0 cho Fintech, Ecommerce và SaaS. Thiết kế giao diện hiện đại, chuẩn nguyên lý thiết kế.',
-      skills: ['Figma', 'UI/UX', 'Mobile App', 'Prototyping', 'Tailwind CSS'],
-    }
-  ];
+  const { freelancers, formatMoney, openMessageModal, openHireModal } = useMarketplace();
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [specialization, setSpecialization] = useState('Tất cả');
+  const [availableOnly, setAvailableOnly] = useState(false);
+
+  const filteredFreelancers = useMemo(() => {
+    const q = searchTerm.trim().toLowerCase();
+    return freelancers.filter((f) => {
+      if (specialization !== 'Tất cả' && f.specialization !== specialization) return false;
+      if (availableOnly && !f.available) return false;
+      if (q) {
+        const hay = [f.name, f.handle, f.role, f.bio, f.location, ...f.skills]
+          .join(' ')
+          .toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [freelancers, searchTerm, specialization, availableOnly]);
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSpecialization('Tất cả');
+    setAvailableOnly(false);
+  };
 
   return (
     <div>
-      <div className="bg-white border-b border-slate-200 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <nav className="flex text-xs text-slate-500 mb-1 space-x-2">
-            <Link to="/" className="hover:text-slate-800">Trang chủ</Link>
-            <span>/</span>
-            <span className="text-slate-800 font-medium">Thuê Freelancer</span>
-          </nav>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#151d2a]">Tìm & Thuê Freelancer Xuất Sắc Nhất</h1>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1">Duyệt qua hồ sơ các chuyên gia công nghệ, thiết kế, marketing đã được xác minh danh tính và năng lực.</p>
+      {/* Header & Search */}
+      <div className="bg-obsidian-900/60 border-b border-white/[0.08] py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="space-y-2">
+              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-400">
+                <Link to="/" className="hover:text-slate-200 transition-colors">
+                  Trang chủ
+                </Link>
+                <span aria-hidden="true">/</span>
+                <span className="text-slate-200 font-medium">Chuyên gia</span>
+              </nav>
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-50">
+                Danh bạ Chuyên gia Công nghệ
+              </h1>
+              <p className="text-sm text-slate-400 max-w-2xl">
+                Duyệt hồ sơ năng lực thực tế, nhắn tin trao đổi trực tiếp hoặc gửi lời mời hợp tác ngay cho dự án của bạn.
+              </p>
+            </div>
+
+            <div className="w-full lg:w-96 relative">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Tìm theo tên, vị trí hoặc kỹ năng (Figma, AWS...)"
+                aria-label="Tìm kiếm chuyên gia"
+                className="w-full rounded-lg bg-obsidian-950 border border-white/10 focus:border-cobalt-500 pl-10 pr-9 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 outline-none transition-colors"
+              />
+              {searchTerm && (
+                <button
+                  type="button"
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-white"
+                  aria-label="Xóa từ khóa"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Interactive Filter Tabs + Availability Switch */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2">
+            <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-lg bg-obsidian-950 border border-white/[0.08] w-fit">
+              {SPECIALIZATIONS.map((spec) => (
+                <button
+                  key={spec}
+                  type="button"
+                  onClick={() => setSpecialization(spec)}
+                  className={`px-3.5 py-1.5 rounded-md text-xs font-medium transition-colors whitespace-nowrap ${
+                    specialization === spec
+                      ? 'bg-cobalt-500 text-white'
+                      : 'text-slate-400 hover:text-slate-100'
+                  }`}
+                >
+                  {spec}
+                </button>
+              ))}
+            </div>
+
+            <label className="inline-flex items-center gap-2.5 text-sm text-slate-300 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={availableOnly}
+                onChange={(e) => setAvailableOnly(e.target.checked)}
+                className="w-4 h-4 rounded accent-cobalt-500"
+              />
+              <span>Chỉ hiển thị chuyên gia sẵn sàng nhận việc</span>
+            </label>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <main className="lg:col-span-12 space-y-4">
-            {freelancers.map(f => (
-              <div key={f.id} className="bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-6 shadow-card hover:shadow-card-hover transition card-transition space-y-4">
+      {/* Freelancer Cards */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-5">
+        <p className="text-sm text-slate-400">
+          Tìm thấy{' '}
+          <span className="font-bold text-slate-100 tabular-nums-mono">
+            {filteredFreelancers.length}
+          </span>{' '}
+          chuyên gia phù hợp
+        </p>
+
+        {filteredFreelancers.length === 0 ? (
+          <div className="p-12 rounded-xl bg-obsidian-850 border border-white/[0.08] text-center space-y-4">
+            <p className="text-lg font-bold text-slate-100">Không tìm thấy chuyên gia phù hợp</p>
+            <p className="text-sm text-slate-400">
+              Thử đổi nhóm chuyên môn hoặc bỏ bộ lọc trạng thái sẵn sàng để xem toàn bộ danh bạ.
+            </p>
+            <button
+              type="button"
+              onClick={resetFilters}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-sm font-semibold transition-colors"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Đặt lại bộ lọc
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filteredFreelancers.map((person) => (
+              <article
+                key={person.id}
+                className="p-6 rounded-xl bg-obsidian-850 border border-white/[0.08] hover:border-white/[0.16] transition-colors space-y-5"
+              >
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                  <div className="flex items-start space-x-4">
-                    <img src={f.avatar} className="w-16 h-16 rounded-full object-cover border-2 border-white shadow shrink-0" alt="avatar" />
-                    <div className="space-y-1">
-                      <div className="flex items-center space-x-2">
-                        <h3 className="text-lg font-bold text-[#151d2a]">
-                          <Link to="/profile" className="hover:text-[#e60278] transition">{f.name}</Link>
-                        </h3>
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-[#007fed] border border-blue-200">
-                          ⚡ Top Rated
-                        </span>
+                  <div className="flex items-start gap-4 min-w-0">
+                    <Avatar src={person.avatar} name={person.name} size="lg" />
+                    <div className="space-y-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                        <h2 className="text-lg font-bold text-slate-50">
+                          <Link
+                            to={`/freelancers/${person.id}`}
+                            className="hover:text-cobalt-400 transition-colors"
+                          >
+                            {person.name}
+                          </Link>
+                        </h2>
+                        <span className="text-xs text-slate-500 tabular-nums-mono">{person.handle}</span>
+                        {person.verified && (
+                          <span className="inline-flex items-center gap-1 text-xs font-medium text-cobalt-400">
+                            <ShieldCheck className="w-3.5 h-3.5" />
+                            Xác minh năng lực
+                          </span>
+                        )}
                       </div>
-                      <div className="text-xs font-semibold text-slate-600">{f.role}</div>
-                      <div className="flex items-center space-x-3 text-xs text-slate-500 pt-0.5">
-                        <span className="text-amber-500 font-bold">{f.rating}</span>
-                        <span>{f.location}</span>
-                        <span>🏆 100% tỷ lệ hoàn thành</span>
+
+                      <p className="text-sm font-medium text-slate-300">{person.role}</p>
+
+                      <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-xs text-slate-400 pt-1">
+                        <span className="inline-flex items-center gap-1 text-slate-200 font-semibold tabular-nums-mono">
+                          <Star className="w-3.5 h-3.5 text-semantic-amber fill-semantic-amber" />
+                          {person.rating.toFixed(1)} ({person.reviewCount} đánh giá)
+                        </span>
+                        <span className="inline-flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                          {person.location}
+                        </span>
+                        <span className="tabular-nums-mono">{person.completedProjects} dự án hoàn thành</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="text-left sm:text-right shrink-0">
-                    <div className="text-xl font-extrabold text-[#151d2a]">{f.rate}</div>
-                    <span className="text-[11px] text-emerald-600 font-semibold block">Sẵn sàng nhận việc</span>
+                  <div className="sm:text-right shrink-0">
+                    <div className="text-lg font-bold text-slate-50 tabular-nums-mono">
+                      {formatMoney(person.hourlyRate)} / giờ
+                    </div>
+                    <p
+                      className={`text-xs font-medium mt-1 ${
+                        person.available ? 'text-semantic-emerald' : 'text-slate-500'
+                      }`}
+                    >
+                      {person.available ? 'Sẵn sàng nhận dự án mới' : 'Đang bận dự án hiện tại'}
+                    </p>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{f.bio}</p>
+                <p className="text-sm text-slate-300 leading-relaxed">{person.bio}</p>
 
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {f.skills.map(s => (
-                    <span key={s} className="text-xs bg-slate-100 text-slate-700 font-medium px-2.5 py-1 rounded-md">
-                      {s}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-xs text-slate-400">{person.skills.join(' · ')}</p>
 
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <Link to="/profile" className="text-xs text-[#007fed] hover:underline font-bold">Xem hồ sơ đầy đủ →</Link>
-                  <div className="flex space-x-2">
-                    <button onClick={() => alert('Đã gửi tin nhắn!')} className="text-xs font-semibold px-4 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 transition">
+                <div className="pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <Link
+                    to={`/freelancers/${person.id}`}
+                    className="text-sm font-medium text-cobalt-400 hover:text-cobalt-300 transition-colors"
+                  >
+                    Xem hồ sơ &amp; dự án tiêu biểu
+                  </Link>
+
+                  <div className="flex items-center gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => openMessageModal(person)}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-obsidian-900 hover:bg-obsidian-800 border border-white/10 text-xs font-semibold text-slate-200 transition-colors whitespace-nowrap"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
                       Nhắn tin
                     </button>
-                    <Link to="/profile" className="text-xs font-bold bg-[#e60278] hover:bg-[#c70066] text-white px-5 py-2 rounded-lg shadow-sm transition">
-                      Thuê ngay
-                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => openHireModal(person)}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cobalt-500 hover:bg-cobalt-600 text-white text-xs font-semibold transition-colors whitespace-nowrap"
+                    >
+                      <Briefcase className="w-3.5 h-3.5" />
+                      Mời nhận việc
+                    </button>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
-          </main>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
